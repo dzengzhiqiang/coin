@@ -1,0 +1,14 @@
+[[api]]
+app_name="binance"
+app_id=""
+app_key=""
+app_secret=""
+api_url=["https://api.binance.com/api"]
+
+[[coin]]
+base_asset="DOGE"
+quote_asset="USDT"
+sell_percent=0.5
+sell_min=200.0
+sell_max=500.0
+
