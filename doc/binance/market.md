@@ -1,4 +1,4 @@
-# 现货交易API地址
+# API地址
 ```text
 正式网 https://api.binance.com/api	
 测试网 https://testnet.binance.vision/api

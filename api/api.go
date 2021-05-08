@@ -1,13 +1,9 @@
 package api
 
-type CoinPrice struct {
-	From   string
-	To     string
-	Remark string
-}
+type ManagerApi interface {
+	//run service loop
+	Run() (err error)
 
-type CoinApi interface {
-	CoinGetPrices() ([]CoinPrice, error) //market trends of coin price
-	CoinBuy()
-	ConSell()
+	//close service
+	Close()
 }
