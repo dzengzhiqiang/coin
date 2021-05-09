@@ -2,6 +2,9 @@ package main
 
 import (
 	"coin/api"
+	"coin/binance"
+	"coin/config"
+	"coin/huobi"
 	"fmt"
 	"github.com/civet148/log"
 	"github.com/urfave/cli/v2"
@@ -36,9 +39,9 @@ const (
 )
 
 const (
-	COIN_ENV_NAME_APP_ID     = "COIN_ENV_APP_ID"
-	COIN_ENV_NAME_APP_KEY    = "COIN_ENV_APP_KEY"
-	COIN_ENV_NAME_APP_SECRET = "COIN_ENV_APP_SECRET"
+	COIN_ENV_APP_ID     = "COIN_ENV_APP_ID"
+	COIN_ENV_APP_KEY    = "COIN_ENV_APP_KEY"
+	COIN_ENV_APP_SECRET = "COIN_ENV_APP_SECRET"
 )
 
 var coin api.CoinApi
@@ -62,6 +65,10 @@ func gracefulExit() {
 			}
 		}
 	}()
+}
+
+func init() {
+	log.SetLevel(0)
 }
 
 func main() {
@@ -92,33 +99,36 @@ var binanceCmd = &cli.Command{
 		&cli.StringFlag{
 			Name:    CMD_FLAG_NAME_APPID,
 			Usage:   "app id",
-			EnvVars: []string{COIN_ENV_NAME_APP_ID},
+			EnvVars: []string{COIN_ENV_APP_ID},
 		},
 		&cli.StringFlag{
 			Name:    CMD_FLAG_NAME_APPKEY,
 			Usage:   "app key",
-			EnvVars: []string{COIN_ENV_NAME_APP_KEY},
+			EnvVars: []string{COIN_ENV_APP_KEY},
 		},
 		&cli.StringFlag{
 			Name:    CMD_FLAG_NAME_APPSECRET,
 			Usage:   "app secret",
-			EnvVars: []string{COIN_ENV_NAME_APP_SECRET},
+			EnvVars: []string{COIN_ENV_APP_SECRET},
 		},
 		&cli.StringFlag{
-			Name:        CMD_FLAG_NAME_CONFIG,
-			Usage:       "config file path",
-			DefaultText: "coin.toml",
+			Name:  CMD_FLAG_NAME_CONFIG,
+			Usage: "config file path",
 		},
+	},
+	Before: func(ctx *cli.Context) error {
+		cfg := config.NewConfig(ctx.String(CMD_FLAG_NAME_CONFIG))
+		if cfg == nil {
+			return fmt.Errorf("load config file failed")
+		}
+		coin = binance.NewCoinManager(cfg)
+		return nil
 	},
 	Subcommands: []*cli.Command{
 		runSubCmd,
 		balanceSubCmd,
 		priceSubCmd,
 		tradeSubCmd,
-	},
-	Action: func(cctx *cli.Context) error {
-
-		return nil
 	},
 }
 
@@ -129,33 +139,36 @@ var huobiCmd = &cli.Command{
 		&cli.StringFlag{
 			Name:    CMD_FLAG_NAME_APPID,
 			Usage:   "app id",
-			EnvVars: []string{COIN_ENV_NAME_APP_ID},
+			EnvVars: []string{COIN_ENV_APP_ID},
 		},
 		&cli.StringFlag{
 			Name:    CMD_FLAG_NAME_APPKEY,
 			Usage:   "app key",
-			EnvVars: []string{COIN_ENV_NAME_APP_KEY},
+			EnvVars: []string{COIN_ENV_APP_KEY},
 		},
 		&cli.StringFlag{
 			Name:    CMD_FLAG_NAME_APPSECRET,
 			Usage:   "app secret",
-			EnvVars: []string{COIN_ENV_NAME_APP_SECRET},
+			EnvVars: []string{COIN_ENV_APP_SECRET},
 		},
 		&cli.StringFlag{
-			Name:        CMD_FLAG_NAME_CONFIG,
-			Usage:       "config file path",
-			DefaultText: "coin.toml",
+			Name:  CMD_FLAG_NAME_CONFIG,
+			Usage: "config file path",
 		},
+	},
+	Before: func(ctx *cli.Context) error {
+		cfg := config.NewConfig(ctx.String(CMD_FLAG_NAME_CONFIG))
+		if cfg == nil {
+			return fmt.Errorf("load config file failed")
+		}
+		coin = huobi.NewCoinManager(cfg)
+		return nil
 	},
 	Subcommands: []*cli.Command{
 		runSubCmd,
 		balanceSubCmd,
 		priceSubCmd,
 		tradeSubCmd,
-	},
-	Action: func(cctx *cli.Context) error {
-
-		return nil
 	},
 }
 
@@ -164,7 +177,7 @@ var runSubCmd = &cli.Command{
 	Usage: "run as a service",
 	Flags: []cli.Flag{},
 	Action: func(cctx *cli.Context) error {
-
+		log.Debugf("run sub command action")
 		return nil
 	},
 }
