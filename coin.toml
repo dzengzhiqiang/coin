@@ -1,7 +1,7 @@
-[[coin]]
+[[coins]]
 base_asset="DOGE"
 quote_asset="USDT"
 sell_percent=1.0
-sell_min=200.0
-sell_max=500.0
+sell_rate=0.2
+buy_rate=0.3
 
