@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>行情接口 | 币安API文档</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    
+    <meta name="description" content="">
+    <link rel="preload" href="../../../assets/css/0.styles.79900eef.css" as="style"><link rel="preload" href="../../../assets/js/app.a1ad5869.js" as="script"><link rel="preload" href="../../../assets/js/2.a3268d1a.js" as="script"><link rel="preload" href="../../../assets/js/58.272674c5.js" as="script"><link rel="prefetch" href="../../../assets/js/10.d304f228.js"><link rel="prefetch" href="../../../assets/js/11.6632d1b7.js"><link rel="prefetch" href="../../../assets/js/12.958c7240.js"><link rel="prefetch" href="../../../assets/js/13.97327008.js"><link rel="prefetch" href="../../../assets/js/14.8b66c308.js"><link rel="prefetch" href="../../../assets/js/15.90f33433.js"><link rel="prefetch" href="../../../assets/js/16.b8b472d0.js"><link rel="prefetch" href="../../../assets/js/17.75c2637e.js"><link rel="prefetch" href="../../../assets/js/18.90def227.js"><link rel="prefetch" href="../../../assets/js/19.a31eaebb.js"><link rel="prefetch" href="../../../assets/js/20.018602c2.js"><link rel="prefetch" href="../../../assets/js/21.43dcc48d.js"><link rel="prefetch" href="../../../assets/js/22.558dd29d.js"><link rel="prefetch" href="../../../assets/js/23.06fd1840.js"><link rel="prefetch" href="../../../assets/js/24.9536d2ee.js"><link rel="prefetch" href="../../../assets/js/25.0538f733.js"><link rel="prefetch" href="../../../assets/js/26.876ff800.js"><link rel="prefetch" href="../../../assets/js/27.732712eb.js"><link rel="prefetch" href="../../../assets/js/28.116c502c.js"><link rel="prefetch" href="../../../assets/js/29.313ce492.js"><link rel="prefetch" href="../../../assets/js/3.adabf404.js"><link rel="prefetch" href="../../../assets/js/30.11bd1085.js"><link rel="prefetch" href="../../../assets/js/31.a49db4c5.js"><link rel="prefetch" href="../../../assets/js/32.f629ee00.js"><link rel="prefetch" href="../../../assets/js/33.58e6bbbd.js"><link rel="prefetch" href="../../../assets/js/34.850004c1.js"><link rel="prefetch" href="../../../assets/js/35.67b4300e.js"><link rel="prefetch" href="../../../assets/js/36.91bf912c.js"><link rel="prefetch" href="../../../assets/js/37.7c016817.js"><link rel="prefetch" href="../../../assets/js/38.bd32a1b7.js"><link rel="prefetch" href="../../../assets/js/39.c5d54ecf.js"><link rel="prefetch" href="../../../assets/js/4.7d5f245c.js"><link rel="prefetch" href="../../../assets/js/40.2ac1a9b3.js"><link rel="prefetch" href="../../../assets/js/41.f442f50a.js"><link rel="prefetch" href="../../../assets/js/42.c5fc4f15.js"><link rel="prefetch" href="../../../assets/js/43.e36c3b14.js"><link rel="prefetch" href="../../../assets/js/44.ce7cd8d5.js"><link rel="prefetch" href="../../../assets/js/45.4c262892.js"><link rel="prefetch" href="../../../assets/js/46.0a2af1d8.js"><link rel="prefetch" href="../../../assets/js/47.23b0d91a.js"><link rel="prefetch" href="../../../assets/js/48.ad577adc.js"><link rel="prefetch" href="../../../assets/js/49.b0e3d692.js"><link rel="prefetch" href="../../../assets/js/5.095e28bb.js"><link rel="prefetch" href="../../../assets/js/50.b78c802d.js"><link rel="prefetch" href="../../../assets/js/51.d4c0cc5c.js"><link rel="prefetch" href="../../../assets/js/52.e351061b.js"><link rel="prefetch" href="../../../assets/js/53.ec9c204f.js"><link rel="prefetch" href="../../../assets/js/54.48757150.js"><link rel="prefetch" href="../../../assets/js/55.5a1b9df1.js"><link rel="prefetch" href="../../../assets/js/56.9c392148.js"><link rel="prefetch" href="../../../assets/js/57.da510600.js"><link rel="prefetch" href="../../../assets/js/59.de4b7b20.js"><link rel="prefetch" href="../../../assets/js/6.076864a5.js"><link rel="prefetch" href="../../../assets/js/60.10e2e335.js"><link rel="prefetch" href="../../../assets/js/61.0556f72d.js"><link rel="prefetch" href="../../../assets/js/62.c6bc0b27.js"><link rel="prefetch" href="../../../assets/js/63.470b470b.js"><link rel="prefetch" href="../../../assets/js/64.f01d8e4a.js"><link rel="prefetch" href="../../../assets/js/65.e9ea2081.js"><link rel="prefetch" href="../../../assets/js/66.9ae7e6a2.js"><link rel="prefetch" href="../../../assets/js/7.9ed1b2fa.js"><link rel="prefetch" href="../../../assets/js/8.265097a2.js"><link rel="prefetch" href="../../../assets/js/9.33fadff3.js">
+    <link rel="stylesheet" href="../../../assets/css/0.styles.79900eef.css">
+  </head>
+  <body>
+
+
+<!-- Copyright � 2008. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.1.2.1052</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  05/14/21 10:17:21.<br>
+<b>Address:</b> <a class="info" href="https://2pd.github.io/zh/spot/restful_endpoints/market_endpoints.html">https://2pd.github.io/zh/spot/restful_endpoints/market_endpoints.html</a><br>
+<b>Title:</b> 行情接口 | 币安API文档 &nbsp;&bull;&nbsp; <b>Size:</b> 49292 &nbsp;&bull;&nbsp; <b>Last Modified:</b> Wed, 05 Aug 2020 00:31:44 GMT<br></div>
+<!-- /Copyright � 2008. Spidersoft Ltd -->
+
+
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="../../zh.html" class="home-link router-link-active"><!----> <span class="site-name">币安API文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="../../zh.html" class="nav-link">
+  现货/杠杆
+</a></div><div class="nav-item"><a href="https://2pd.github.io/zh/spot/restful_endpoints/.html#" class="nav-link">
+  USDT合约(TODO)
+</a></div><div class="nav-item"><a href="https://2pd.github.io/zh/spot/restful_endpoints/.html#" class="nav-link">
+  币本位合约(TODO)
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Select language" class="dropdown-title"><span class="title">语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://2pd.github.io/spot/restful_endpoints/market_endpoints.html" class="nav-link">
+  English
+</a></li><li class="dropdown-item"><!----> <a href="market_endpoints.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  简体中文
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="../../zh.html" class="nav-link">
+  现货/杠杆
+</a></div><div class="nav-item"><a href="https://2pd.github.io/zh/spot/restful_endpoints/.html#" class="nav-link">
+  USDT合约(TODO)
+</a></div><div class="nav-item"><a href="https://2pd.github.io/zh/spot/restful_endpoints/.html#" class="nav-link">
+  币本位合约(TODO)
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Select language" class="dropdown-title"><span class="title">语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://2pd.github.io/spot/restful_endpoints/market_endpoints.html" class="nav-link">
+  English
+</a></li><li class="dropdown-item"><!----> <a href="market_endpoints.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  简体中文
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="../change_log/change_log.html" class="sidebar-link">更新日志</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>介绍</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="../introduction/key_setup.html" class="sidebar-link">API Key 设置</a></li><li><a href="../introduction/key_restriction.html" class="sidebar-link">API Key 权限设置</a></li><li><a href="../introduction/enabling_accounts.html" class="sidebar-link">账户</a></li><li><a href="../introduction/spot_testnet.html" class="sidebar-link">测试网</a></li><li><a href="../introduction/postman.html" class="sidebar-link">Postman Collections</a></li><li><a href="../introduction/contact_us.html" class="sidebar-link">联系我们</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>基本信息</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="../basic/basic.html" class="sidebar-link">基本信息</a></li><li><a href="../basic/http_code.html" class="sidebar-link">HTTP 返回代码</a></li><li><a href="../basic/endpoint_general.html" class="sidebar-link">接口的基本信息</a></li><li><a href="../basic/limits.html" class="sidebar-link">访问限制</a></li><li><a href="../basic/endpoint_security.html" class="sidebar-link">接口鉴权类型</a></li><li><a href="../basic/signature.html" class="sidebar-link">SIGNED Endpoint security</a></li><li><a href="../basic/terminology.html" class="sidebar-link">术语</a></li><li><a href="../../../spot/basic/filters.html" class="sidebar-link">Filters</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>RESTful接口</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="market_endpoints.html" aria-current="page" class="active sidebar-link">行情接口</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/market_endpoints.html#测试服务器连通�?" class="sidebar-link">测试服务器连通性</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/market_endpoints.html#获取服务器时�?" class="sidebar-link">获取服务器时间</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/market_endpoints.html#交易规范信息" class="sidebar-link">交易规范信息</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/market_endpoints.html#深度信息" class="sidebar-link">深度信息</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/market_endpoints.html#近期成交列表" class="sidebar-link">近期成交列表</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/market_endpoints.html#查询历史成交" class="sidebar-link">查询历史成交</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/market_endpoints.html#近期成交-归集" class="sidebar-link">近期成交(归集)</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/market_endpoints.html#k线数�?" class="sidebar-link">K线数据</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/market_endpoints.html#当前平均价格" class="sidebar-link">当前平均价格</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/market_endpoints.html#_24hr-价格变动情况" class="sidebar-link">24hr 价格变动情况</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/market_endpoints.html#最新价�?" class="sidebar-link">最新价格</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/market_endpoints.html#当前最优挂�?" class="sidebar-link">当前最优挂单</a></li></ul></li><li><a href="spot_endpoints.html" class="sidebar-link">现货接口</a></li><li><a href="wallet_endpoints.html" class="sidebar-link">钱包接口</a></li><li><a href="margin_endpoints.html" class="sidebar-link">杠杆接口</a></li><li><a href="savings_endpoints.html" class="sidebar-link">币安宝接口</a></li><li><a href="mining_endpoints.html" class="sidebar-link">矿池接口</a></li><li><a href="futures_endpoints.html" class="sidebar-link">合约接口</a></li><li><a href="sub_accounts.html" class="sidebar-link">子母账户接口</a></li><li><a href="listen_key.html" class="sidebar-link">Listen Key</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Websocket推送</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="../websocket/general.html" class="sidebar-link">Websocket介绍</a></li><li><a href="../websocket/streams.html" class="sidebar-link">行情数据流</a></li><li><a href="../websocket/user_stream.html" class="sidebar-link">账户信息推送</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>定义</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="../definitions/error_code.html" class="sidebar-link">错误代码</a></li><li><a href="../definitions/enum.html" class="sidebar-link">枚举定义</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="行情接口"><a href="#行情接口" class="header-anchor">#</a> 行情接口</h1> <h2 id="测试服务器连通性"><a href="#测试服务器连通性" class="header-anchor">#</a> 测试服务器连通性</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre></div><p><code>GET /api/v3/ping</code></p> <p>测试能否联通 Rest API。</p> <p><strong>权重:</strong></p> <p>1</p> <p><strong>参数:</strong></p> <p>NONE</p> <h2 id="获取服务器时间"><a href="#获取服务器时间" class="header-anchor">#</a> 获取服务器时间</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;serverTime&quot;</span><span class="token operator">:</span> <span class="token number">1499827319559</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>GET /api/v3/time</code></p> <p>测试能否联通 Rest API 并 获取服务器时间。</p> <p><strong>权重:</strong>
+1</p> <p><strong>参数:</strong></p> <p>NONE</p> <h2 id="交易规范信息"><a href="#交易规范信息" class="header-anchor">#</a> 交易规范信息</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;timezone&quot;</span><span class="token operator">:</span> <span class="token string">&quot;UTC&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;serverTime&quot;</span><span class="token operator">:</span> <span class="token number">1565246363776</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;rateLimits&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment">//These are defined in the `ENUM definitions` section under `Rate Limiters (rateLimitType)`.</span>
+            <span class="token comment">//All limits are optional</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;exchangeFilters&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token comment">//These are the defined filters in the `Filters` section.</span>
+            <span class="token comment">//All filters are optional.</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;symbols&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ETHBTC&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TRADING&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;baseAsset&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ETH&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;baseAssetPrecision&quot;</span><span class="token operator">:</span> <span class="token number">8</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;quoteAsset&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BTC&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;quotePrecision&quot;</span><span class="token operator">:</span> <span class="token number">8</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;quoteAssetPrecision&quot;</span><span class="token operator">:</span> <span class="token number">8</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;orderTypes&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                <span class="token string">&quot;LIMIT&quot;</span><span class="token punctuation">,</span>
+                <span class="token string">&quot;LIMIT_MAKER&quot;</span><span class="token punctuation">,</span>
+                <span class="token string">&quot;MARKET&quot;</span><span class="token punctuation">,</span>
+                <span class="token string">&quot;STOP_LOSS&quot;</span><span class="token punctuation">,</span>
+                <span class="token string">&quot;STOP_LOSS_LIMIT&quot;</span><span class="token punctuation">,</span>
+                <span class="token string">&quot;TAKE_PROFIT&quot;</span><span class="token punctuation">,</span>
+                <span class="token string">&quot;TAKE_PROFIT_LIMIT&quot;</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;icebergAllowed&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;ocoAllowed&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;isSpotTradingAllowed&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;isMarginTradingAllowed&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;filters&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token comment">//These are defined in the Filters section.</span>
+            <span class="token comment">//All filters are optional</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;permissions&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+              <span class="token string">&quot;SPOT&quot;</span><span class="token punctuation">,</span>
+              <span class="token string">&quot;MARGIN&quot;</span>
+            <span class="token punctuation">]</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>GET /api/v3/exchangeInfo</code></p> <p>获取交易规则和交易对信息。</p> <p><strong>权重:</strong>
+1</p> <p><strong>参数:</strong></p> <p>NONE</p> <h2 id="深度信息"><a href="#深度信息" class="header-anchor">#</a> 深度信息</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;lastUpdateId&quot;</span><span class="token operator">:</span> <span class="token number">1027024</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;bids&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">[</span>
+      <span class="token string">&quot;4.00000000&quot;</span><span class="token punctuation">,</span>     <span class="token comment">// 价位</span>
+      <span class="token string">&quot;431.00000000&quot;</span>    <span class="token comment">// 挂单量</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;asks&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">[</span>
+      <span class="token string">&quot;4.00000200&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;12.00000000&quot;</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>GET /api/v3/depth</code></p> <p><strong>权重:</strong></p> <p>基于限制调整:</p> <table><thead><tr><th>限制</th> <th>权重</th></tr></thead> <tbody><tr><td>5, 10, 20, 50, 100</td> <td>1</td></tr> <tr><td>500</td> <td>5</td></tr> <tr><td>1000</td> <td>10</td></tr> <tr><td>5000</td> <td>50</td></tr></tbody></table> <p><strong>参数:</strong></p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>symbol</td> <td>STRING</td> <td>YES</td> <td></td></tr> <tr><td>limit</td> <td>INT</td> <td>NO</td> <td>默认 100; 最大 5000. 可选值:[5, 10, 20, 50, 100, 500, 1000, 5000]</td></tr></tbody></table> <h2 id="近期成交列表"><a href="#近期成交列表" class="header-anchor">#</a> 近期成交列表</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">28457</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;4.00000100&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;qty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;12.00000000&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;time&quot;</span><span class="token operator">:</span> <span class="token number">1499865549590</span><span class="token punctuation">,</span> <span class="token comment">// 交易成交时间, 和websocket中的T一致.</span>
+    <span class="token property">&quot;isBuyerMaker&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;isBestMatch&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre></div><p><code>GET /api/v3/trades</code></p> <p>获取近期成交</p> <p><strong>权重:</strong>
+1</p> <p><strong>参数:</strong></p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>symbol</td> <td>STRING</td> <td>YES</td> <td></td></tr> <tr><td>limit</td> <td>INT</td> <td>NO</td> <td>默认 500; 最大值 1000.</td></tr></tbody></table> <h2 id="查询历史成交"><a href="#查询历史成交" class="header-anchor">#</a> 查询历史成交</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">28457</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;4.00000100&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;qty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;12.00000000&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;quoteQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;48.000012&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;time&quot;</span><span class="token operator">:</span> <span class="token number">1499865549590</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;isBuyerMaker&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;isBestMatch&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre></div><p><code>GET /api/v3/historicalTrades</code></p> <p>获取历史成交。</p> <p><strong>权重:</strong>
+5</p> <p><strong>参数:</strong></p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>symbol</td> <td>STRING</td> <td>YES</td> <td></td></tr> <tr><td>limit</td> <td>INT</td> <td>NO</td> <td>默认 500; 最大值 1000.</td></tr> <tr><td>fromId</td> <td>LONG</td> <td>NO</td> <td>从哪一条成交id开始返回. 缺省返回最近的成交记录。</td></tr></tbody></table> <ul><li>需要提交<code>X-MBX-APIKEY</code></li></ul> <h2 id="近期成交-归集"><a href="#近期成交-归集" class="header-anchor">#</a> 近期成交(归集)</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;a&quot;</span><span class="token operator">:</span> <span class="token number">26129</span><span class="token punctuation">,</span>         <span class="token comment">// 归集成交ID</span>
+    <span class="token property">&quot;p&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.01633102&quot;</span><span class="token punctuation">,</span>  <span class="token comment">// 成交价</span>
+    <span class="token property">&quot;q&quot;</span><span class="token operator">:</span> <span class="token string">&quot;4.70443515&quot;</span><span class="token punctuation">,</span>  <span class="token comment">// 成交量</span>
+    <span class="token property">&quot;f&quot;</span><span class="token operator">:</span> <span class="token number">27781</span><span class="token punctuation">,</span>         <span class="token comment">// 被归集的首个成交ID</span>
+    <span class="token property">&quot;l&quot;</span><span class="token operator">:</span> <span class="token number">27781</span><span class="token punctuation">,</span>         <span class="token comment">// 被归集的末个成交ID</span>
+    <span class="token property">&quot;T&quot;</span><span class="token operator">:</span> <span class="token number">1498793709153</span><span class="token punctuation">,</span> <span class="token comment">// 成交时间</span>
+    <span class="token property">&quot;m&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>          <span class="token comment">// 是否为主动卖出单</span>
+    <span class="token property">&quot;M&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>           <span class="token comment">// 是否为最优撮合单(可忽略，目前总为最优撮合)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre></div><p><code>GET /api/v3/aggTrades</code></p> <p>归集交易与逐笔交易的区别在于，同一价格、同一方向、同一时间的trade会被聚合为一条</p> <p><strong>权重:</strong>
+1</p> <p><strong>参数:</strong></p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>symbol</td> <td>STRING</td> <td>YES</td> <td></td></tr> <tr><td>fromId</td> <td>LONG</td> <td>NO</td> <td>从包含fromId的成交id开始返回结果</td></tr> <tr><td>startTime</td> <td>LONG</td> <td>NO</td> <td>从该时刻之后的成交记录开始返回结果</td></tr> <tr><td>endTime</td> <td>LONG</td> <td>NO</td> <td>返回该时刻为止的成交记录</td></tr> <tr><td>limit</td> <td>INT</td> <td>NO</td> <td>默认 500; 最大 1000.</td></tr></tbody></table> <ul><li>如果发送startTime和endTime，间隔必须小于一小时。</li> <li>如果没有发送任何筛选参数(fromId, startTime,endTime)，默认返回最近的成交记录</li></ul> <h2 id="k线数据"><a href="#k线数据" class="header-anchor">#</a> K线数据</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">[</span>
+  <span class="token punctuation">[</span>
+    <span class="token number">1499040000000</span><span class="token punctuation">,</span>      <span class="token comment">// 开盘时间</span>
+    <span class="token string">&quot;0.01634790&quot;</span><span class="token punctuation">,</span>       <span class="token comment">// 开盘价</span>
+    <span class="token string">&quot;0.80000000&quot;</span><span class="token punctuation">,</span>       <span class="token comment">// 最高价</span>
+    <span class="token string">&quot;0.01575800&quot;</span><span class="token punctuation">,</span>       <span class="token comment">// 最低价</span>
+    <span class="token string">&quot;0.01577100&quot;</span><span class="token punctuation">,</span>       <span class="token comment">// 收盘价(当前K线未结束的即为最新价)</span>
+    <span class="token string">&quot;148976.11427815&quot;</span><span class="token punctuation">,</span>  <span class="token comment">// 成交量</span>
+    <span class="token number">1499644799999</span><span class="token punctuation">,</span>      <span class="token comment">// 收盘时间</span>
+    <span class="token string">&quot;2434.19055334&quot;</span><span class="token punctuation">,</span>    <span class="token comment">// 成交额</span>
+    <span class="token number">308</span><span class="token punctuation">,</span>                <span class="token comment">// 成交笔数</span>
+    <span class="token string">&quot;1756.87402397&quot;</span><span class="token punctuation">,</span>    <span class="token comment">// 主动买入成交量</span>
+    <span class="token string">&quot;28.46694368&quot;</span><span class="token punctuation">,</span>      <span class="token comment">// 主动买入成交额</span>
+    <span class="token string">&quot;17928899.62484339&quot;</span> <span class="token comment">// 请忽略该参数</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">]</span>
+</code></pre></div><p><code>GET /api/v3/klines</code></p> <p>每根K线代表一个交易对。<br>
+每根K线的开盘时间可视为唯一ID</p> <p><strong>权重:</strong>
+1</p> <p><strong>参数:</strong></p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>symbol</td> <td>STRING</td> <td>YES</td> <td></td></tr> <tr><td>interval</td> <td>ENUM</td> <td>YES</td> <td></td></tr> <tr><td>startTime</td> <td>LONG</td> <td>NO</td> <td></td></tr> <tr><td>endTime</td> <td>LONG</td> <td>NO</td> <td></td></tr> <tr><td>limit</td> <td>INT</td> <td>NO</td> <td>默认 500; 最大 1000.</td></tr></tbody></table> <ul><li>如果未发送 startTime 和 endTime ，默认返回最近的交易。</li></ul> <h2 id="当前平均价格"><a href="#当前平均价格" class="header-anchor">#</a> 当前平均价格</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;mins&quot;</span><span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;9.35751834&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>GET /api/v3/avgPrice</code></p> <p><strong>权重:</strong>
+1</p> <p><strong>参数:</strong></p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>symbol</td> <td>STRING</td> <td>YES</td> <td></td></tr></tbody></table> <h2 id="_24hr-价格变动情况"><a href="#_24hr-价格变动情况" class="header-anchor">#</a> 24hr 价格变动情况</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BNBBTC&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;priceChange&quot;</span><span class="token operator">:</span> <span class="token string">&quot;-94.99999800&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;priceChangePercent&quot;</span><span class="token operator">:</span> <span class="token string">&quot;-95.960&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;weightedAvgPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.29628482&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;prevClosePrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.10002000&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;lastPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;4.00000200&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;lastQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;200.00000000&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;bidPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;4.00000000&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;askPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;4.00000200&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;openPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;99.00000000&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;highPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;100.00000000&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;lowPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.10000000&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;volume&quot;</span><span class="token operator">:</span> <span class="token string">&quot;8913.30000000&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;quoteVolume&quot;</span><span class="token operator">:</span> <span class="token string">&quot;15.30000000&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;openTime&quot;</span><span class="token operator">:</span> <span class="token number">1499783499040</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;closeTime&quot;</span><span class="token operator">:</span> <span class="token number">1499869899040</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;firstId&quot;</span><span class="token operator">:</span> <span class="token number">28385</span><span class="token punctuation">,</span>   <span class="token comment">// 首笔成交id</span>
+  <span class="token property">&quot;lastId&quot;</span><span class="token operator">:</span> <span class="token number">28460</span><span class="token punctuation">,</span>    <span class="token comment">// 末笔成交id</span>
+  <span class="token property">&quot;count&quot;</span><span class="token operator">:</span> <span class="token number">76</span>         <span class="token comment">// 成交笔数</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>OR</p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BNBBTC&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;priceChange&quot;</span><span class="token operator">:</span> <span class="token string">&quot;-94.99999800&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;priceChangePercent&quot;</span><span class="token operator">:</span> <span class="token string">&quot;-95.960&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;weightedAvgPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.29628482&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;prevClosePrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.10002000&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;lastPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;4.00000200&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;lastQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;200.00000000&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;bidPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;4.00000000&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;askPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;4.00000200&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;openPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;99.00000000&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;highPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;100.00000000&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;lowPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.10000000&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;volume&quot;</span><span class="token operator">:</span> <span class="token string">&quot;8913.30000000&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;quoteVolume&quot;</span><span class="token operator">:</span> <span class="token string">&quot;15.30000000&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;openTime&quot;</span><span class="token operator">:</span> <span class="token number">1499783499040</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;closeTime&quot;</span><span class="token operator">:</span> <span class="token number">1499869899040</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;firstId&quot;</span><span class="token operator">:</span> <span class="token number">28385</span><span class="token punctuation">,</span>  
+    <span class="token property">&quot;lastId&quot;</span><span class="token operator">:</span> <span class="token number">28460</span><span class="token punctuation">,</span>   
+    <span class="token property">&quot;count&quot;</span><span class="token operator">:</span> <span class="token number">76</span>      
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre></div><p><code>GET /api/v3/ticker/24hr</code></p> <p>24 小时滚动窗口价格变动数据。 请注意，不携带symbol参数会返回全部交易对数据，不仅数据庞大，而且权重极高</p> <p><strong>权重:</strong></p> <p>1 单一交易对;<br> <strong>40</strong> 交易对参数缺失</p> <p><strong>参数:</strong></p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>symbol</td> <td>STRING</td> <td>NO</td> <td></td></tr></tbody></table> <ul><li>请注意，不携带symbol参数会返回全部交易对数据</li></ul> <h2 id="最新价格"><a href="#最新价格" class="header-anchor">#</a> 最新价格</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;4.00000200&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>OR</p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;4.00000200&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ETHBTC&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.07946600&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre></div><p><code>GET /api/v3/ticker/price</code></p> <p>获取交易对最新价格</p> <p><strong>权重:</strong></p> <p>1 单一交易对;<br> <strong>2</strong> 交易对参数缺失</p> <p><strong>参数:</strong></p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>symbol</td> <td>STRING</td> <td>NO</td> <td></td></tr></tbody></table> <ul><li>不发送交易对参数，则会返回所有交易对信息</li></ul> <h2 id="当前最优挂单"><a href="#当前最优挂单" class="header-anchor">#</a> 当前最优挂单</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;bidPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;4.00000000&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;bidQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;431.00000000&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;askPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;4.00000200&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;askQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;9.00000000&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>OR</p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;bidPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;4.00000000&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;bidQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;431.00000000&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;askPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;4.00000200&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;askQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;9.00000000&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ETHBTC&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;bidPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.07946700&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;bidQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;9.00000000&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;askPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;100000.00000000&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;askQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1000.00000000&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre></div><p><code>GET /api/v3/ticker/bookTicker</code></p> <p>返回当前最优的挂单(最高买单，最低卖单)</p> <p><strong>权重:</strong></p> <p>1 单一交易对;<br> <strong>2</strong> 交易对参数缺失</p> <p><strong>参数:</strong></p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>symbol</td> <td>STRING</td> <td>NO</td> <td></td></tr></tbody></table> <ul><li>不发送交易对参数，则会返回所有交易对信息</li></ul></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">8/5/2020, 12:29:57 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="../../../spot/basic/filters.html" class="prev">
+        Filters
+      </a></span> <span class="next"><a href="spot_endpoints.html">
+        现货接口
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="../../../assets/js/app.a1ad5869.js" defer></script><script src="../../../assets/js/2.a3268d1a.js" defer></script><script src="../../../assets/js/58.272674c5.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>现货接口 | 币安API文档</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    
+    <meta name="description" content="">
+    <link rel="preload" href="../../../assets/css/0.styles.79900eef.css" as="style"><link rel="preload" href="../../../assets/js/app.a1ad5869.js" as="script"><link rel="preload" href="../../../assets/js/2.a3268d1a.js" as="script"><link rel="preload" href="../../../assets/js/61.0556f72d.js" as="script"><link rel="prefetch" href="../../../assets/js/10.d304f228.js"><link rel="prefetch" href="../../../assets/js/11.6632d1b7.js"><link rel="prefetch" href="../../../assets/js/12.958c7240.js"><link rel="prefetch" href="../../../assets/js/13.97327008.js"><link rel="prefetch" href="../../../assets/js/14.8b66c308.js"><link rel="prefetch" href="../../../assets/js/15.90f33433.js"><link rel="prefetch" href="../../../assets/js/16.b8b472d0.js"><link rel="prefetch" href="../../../assets/js/17.75c2637e.js"><link rel="prefetch" href="../../../assets/js/18.90def227.js"><link rel="prefetch" href="../../../assets/js/19.a31eaebb.js"><link rel="prefetch" href="../../../assets/js/20.018602c2.js"><link rel="prefetch" href="../../../assets/js/21.43dcc48d.js"><link rel="prefetch" href="../../../assets/js/22.558dd29d.js"><link rel="prefetch" href="../../../assets/js/23.06fd1840.js"><link rel="prefetch" href="../../../assets/js/24.9536d2ee.js"><link rel="prefetch" href="../../../assets/js/25.0538f733.js"><link rel="prefetch" href="../../../assets/js/26.876ff800.js"><link rel="prefetch" href="../../../assets/js/27.732712eb.js"><link rel="prefetch" href="../../../assets/js/28.116c502c.js"><link rel="prefetch" href="../../../assets/js/29.313ce492.js"><link rel="prefetch" href="../../../assets/js/3.adabf404.js"><link rel="prefetch" href="../../../assets/js/30.11bd1085.js"><link rel="prefetch" href="../../../assets/js/31.a49db4c5.js"><link rel="prefetch" href="../../../assets/js/32.f629ee00.js"><link rel="prefetch" href="../../../assets/js/33.58e6bbbd.js"><link rel="prefetch" href="../../../assets/js/34.850004c1.js"><link rel="prefetch" href="../../../assets/js/35.67b4300e.js"><link rel="prefetch" href="../../../assets/js/36.91bf912c.js"><link rel="prefetch" href="../../../assets/js/37.7c016817.js"><link rel="prefetch" href="../../../assets/js/38.bd32a1b7.js"><link rel="prefetch" href="../../../assets/js/39.c5d54ecf.js"><link rel="prefetch" href="../../../assets/js/4.7d5f245c.js"><link rel="prefetch" href="../../../assets/js/40.2ac1a9b3.js"><link rel="prefetch" href="../../../assets/js/41.f442f50a.js"><link rel="prefetch" href="../../../assets/js/42.c5fc4f15.js"><link rel="prefetch" href="../../../assets/js/43.e36c3b14.js"><link rel="prefetch" href="../../../assets/js/44.ce7cd8d5.js"><link rel="prefetch" href="../../../assets/js/45.4c262892.js"><link rel="prefetch" href="../../../assets/js/46.0a2af1d8.js"><link rel="prefetch" href="../../../assets/js/47.23b0d91a.js"><link rel="prefetch" href="../../../assets/js/48.ad577adc.js"><link rel="prefetch" href="../../../assets/js/49.b0e3d692.js"><link rel="prefetch" href="../../../assets/js/5.095e28bb.js"><link rel="prefetch" href="../../../assets/js/50.b78c802d.js"><link rel="prefetch" href="../../../assets/js/51.d4c0cc5c.js"><link rel="prefetch" href="../../../assets/js/52.e351061b.js"><link rel="prefetch" href="../../../assets/js/53.ec9c204f.js"><link rel="prefetch" href="../../../assets/js/54.48757150.js"><link rel="prefetch" href="../../../assets/js/55.5a1b9df1.js"><link rel="prefetch" href="../../../assets/js/56.9c392148.js"><link rel="prefetch" href="../../../assets/js/57.da510600.js"><link rel="prefetch" href="../../../assets/js/58.272674c5.js"><link rel="prefetch" href="../../../assets/js/59.de4b7b20.js"><link rel="prefetch" href="../../../assets/js/6.076864a5.js"><link rel="prefetch" href="../../../assets/js/60.10e2e335.js"><link rel="prefetch" href="../../../assets/js/62.c6bc0b27.js"><link rel="prefetch" href="../../../assets/js/63.470b470b.js"><link rel="prefetch" href="../../../assets/js/64.f01d8e4a.js"><link rel="prefetch" href="../../../assets/js/65.e9ea2081.js"><link rel="prefetch" href="../../../assets/js/66.9ae7e6a2.js"><link rel="prefetch" href="../../../assets/js/7.9ed1b2fa.js"><link rel="prefetch" href="../../../assets/js/8.265097a2.js"><link rel="prefetch" href="../../../assets/js/9.33fadff3.js">
+    <link rel="stylesheet" href="../../../assets/css/0.styles.79900eef.css">
+  </head>
+  <body>
+
+
+<!-- Copyright � 2008. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.1.2.1052</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  05/14/21 10:17:21.<br>
+<b>Address:</b> <a class="info" href="https://2pd.github.io/zh/spot/restful_endpoints/spot_endpoints.html">https://2pd.github.io/zh/spot/restful_endpoints/spot_endpoints.html</a><br>
+<b>Title:</b> 现货接口 | 币安API文档 &nbsp;&bull;&nbsp; <b>Size:</b> 109934 &nbsp;&bull;&nbsp; <b>Last Modified:</b> Wed, 05 Aug 2020 00:31:44 GMT<br></div>
+<!-- /Copyright � 2008. Spidersoft Ltd -->
+
+
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="../../zh.html" class="home-link router-link-active"><!----> <span class="site-name">币安API文档</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="../../zh.html" class="nav-link">
+  现货/杠杆
+</a></div><div class="nav-item"><a href="https://2pd.github.io/zh/spot/restful_endpoints/.html#" class="nav-link">
+  USDT合约(TODO)
+</a></div><div class="nav-item"><a href="https://2pd.github.io/zh/spot/restful_endpoints/.html#" class="nav-link">
+  币本位合约(TODO)
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Select language" class="dropdown-title"><span class="title">语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://2pd.github.io/spot/restful_endpoints/spot_endpoints.html" class="nav-link">
+  English
+</a></li><li class="dropdown-item"><!----> <a href="spot_endpoints.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  简体中文
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="../../zh.html" class="nav-link">
+  现货/杠杆
+</a></div><div class="nav-item"><a href="https://2pd.github.io/zh/spot/restful_endpoints/.html#" class="nav-link">
+  USDT合约(TODO)
+</a></div><div class="nav-item"><a href="https://2pd.github.io/zh/spot/restful_endpoints/.html#" class="nav-link">
+  币本位合约(TODO)
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Select language" class="dropdown-title"><span class="title">语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://2pd.github.io/spot/restful_endpoints/spot_endpoints.html" class="nav-link">
+  English
+</a></li><li class="dropdown-item"><!----> <a href="spot_endpoints.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  简体中文
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="../change_log/change_log.html" class="sidebar-link">更新日志</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>介绍</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="../introduction/key_setup.html" class="sidebar-link">API Key 设置</a></li><li><a href="../introduction/key_restriction.html" class="sidebar-link">API Key 权限设置</a></li><li><a href="../introduction/enabling_accounts.html" class="sidebar-link">账户</a></li><li><a href="../introduction/spot_testnet.html" class="sidebar-link">测试网</a></li><li><a href="../introduction/postman.html" class="sidebar-link">Postman Collections</a></li><li><a href="../introduction/contact_us.html" class="sidebar-link">联系我们</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>基本信息</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="../basic/basic.html" class="sidebar-link">基本信息</a></li><li><a href="../basic/http_code.html" class="sidebar-link">HTTP 返回代码</a></li><li><a href="../basic/endpoint_general.html" class="sidebar-link">接口的基本信息</a></li><li><a href="../basic/limits.html" class="sidebar-link">访问限制</a></li><li><a href="../basic/endpoint_security.html" class="sidebar-link">接口鉴权类型</a></li><li><a href="../basic/signature.html" class="sidebar-link">SIGNED Endpoint security</a></li><li><a href="../basic/terminology.html" class="sidebar-link">术语</a></li><li><a href="../../../spot/basic/filters.html" class="sidebar-link">Filters</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>RESTful接口</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="market_endpoints.html" class="sidebar-link">行情接口</a></li><li><a href="spot_endpoints.html" aria-current="page" class="active sidebar-link">现货接口</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/spot_endpoints.html#测试下单-trade" class="sidebar-link">测试下单 (TRADE)</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/spot_endpoints.html#下单-trade" class="sidebar-link">下单  (TRADE)</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/spot_endpoints.html#撤销订单-trade" class="sidebar-link">撤销订单 (TRADE)</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/spot_endpoints.html#撤销单一交易对的所有挂�?trade" class="sidebar-link">撤销单一交易对的所有挂单 (TRADE)</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/spot_endpoints.html#查询订单-user-data" class="sidebar-link">查询订单 (USER_DATA)</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/spot_endpoints.html#当前挂单-user-data" class="sidebar-link">当前挂单 (USER_DATA)</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/spot_endpoints.html#查询所有订�?user-data" class="sidebar-link">查询所有订单 (USER_DATA)</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/spot_endpoints.html#oco下单-trade" class="sidebar-link">OCO下单(TRADE)</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/spot_endpoints.html#取消-oco-订单-trade" class="sidebar-link">取消 OCO 订单(TRADE)</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/spot_endpoints.html#查询-oco-user-data" class="sidebar-link">查询 OCO (USER_DATA)</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/spot_endpoints.html#查询所�?oco-user-data" class="sidebar-link">查询所有 OCO (USER_DATA)</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/spot_endpoints.html#查询-oco-挂单-user-data" class="sidebar-link">查询 OCO 挂单 (USER_DATA)</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/spot_endpoints.html#账户信息-user-data" class="sidebar-link">账户信息 (USER_DATA)</a></li><li class="sidebar-sub-header"><a href="https://2pd.github.io/zh/spot/restful_endpoints/spot_endpoints.html#账户成交历史-user-data" class="sidebar-link">账户成交历史 (USER_DATA)</a></li></ul></li><li><a href="wallet_endpoints.html" class="sidebar-link">钱包接口</a></li><li><a href="margin_endpoints.html" class="sidebar-link">杠杆接口</a></li><li><a href="savings_endpoints.html" class="sidebar-link">币安宝接口</a></li><li><a href="mining_endpoints.html" class="sidebar-link">矿池接口</a></li><li><a href="futures_endpoints.html" class="sidebar-link">合约接口</a></li><li><a href="sub_accounts.html" class="sidebar-link">子母账户接口</a></li><li><a href="listen_key.html" class="sidebar-link">Listen Key</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Websocket推送</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="../websocket/general.html" class="sidebar-link">Websocket介绍</a></li><li><a href="../websocket/streams.html" class="sidebar-link">行情数据流</a></li><li><a href="../websocket/user_stream.html" class="sidebar-link">账户信息推送</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>定义</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="../definitions/error_code.html" class="sidebar-link">错误代码</a></li><li><a href="../definitions/enum.html" class="sidebar-link">枚举定义</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="现货接口"><a href="#现货接口" class="header-anchor">#</a> 现货接口</h1> <h2 id="测试下单-trade"><a href="#测试下单-trade" class="header-anchor">#</a> 测试下单 (TRADE)</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre></div><p><code>POST /api/v3/order/test (HMAC SHA256)</code></p> <p>用于测试订单请求，但不会提交到撮合引擎</p> <p><strong>权重:</strong>
+1</p> <p><strong>参数:</strong></p> <p>同于 <code>POST /api/v3/order</code></p> <h2 id="下单-trade"><a href="#下单-trade" class="header-anchor">#</a> 下单  (TRADE)</h2> <blockquote><p><strong>Response ACK:</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BTCUSDT&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">28</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">-1</span><span class="token punctuation">,</span> <span class="token comment">//Unless OCO, value will be -1</span>
+  <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;6gCrw2kRUAF9CvJDGP16IP&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;transactTime&quot;</span><span class="token operator">:</span> <span class="token number">1507725176595</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p><strong>Response RESULT:</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BTCUSDT&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">28</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">-1</span><span class="token punctuation">,</span> <span class="token comment">//Unless OCO, value will be -1</span>
+  <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;6gCrw2kRUAF9CvJDGP16IP&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;transactTime&quot;</span><span class="token operator">:</span> <span class="token number">1507725176595</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.00000000&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;origQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;10.00000000&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;executedQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;10.00000000&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;cummulativeQuoteQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;10.00000000&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;FILLED&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;timeInForce&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GTC&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;MARKET&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;side&quot;</span><span class="token operator">:</span> <span class="token string">&quot;SELL&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p><strong>Response FULL:</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BTCUSDT&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 交易对</span>
+  <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">28</span><span class="token punctuation">,</span> <span class="token comment">// 系统的订单ID</span>
+  <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">-1</span><span class="token punctuation">,</span> <span class="token comment">// OCO订单的ID，不然就是-1</span>
+  <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;6gCrw2kRUAF9CvJDGP16IP&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 客户自己设置的ID</span>
+  <span class="token property">&quot;transactTime&quot;</span><span class="token operator">:</span> <span class="token number">1507725176595</span><span class="token punctuation">,</span> <span class="token comment">// 交易的时间戳</span>
+  <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.00000000&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 订单价格</span>
+  <span class="token property">&quot;origQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;10.00000000&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 用户设置的原始订单数量</span>
+  <span class="token property">&quot;executedQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;10.00000000&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 交易的订单数量</span>
+  <span class="token property">&quot;cummulativeQuoteQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;10.00000000&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 累计交易的金额</span>
+  <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;FILLED&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 订单状态</span>
+  <span class="token property">&quot;timeInForce&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GTC&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 订单的时效方式</span>
+  <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;MARKET&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 订单类型， 比如市价单，现价单等</span>
+  <span class="token property">&quot;side&quot;</span><span class="token operator">:</span> <span class="token string">&quot;SELL&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 订单方向，买还是卖</span>
+  <span class="token property">&quot;fills&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token comment">// 订单中交易的信息</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;4000.00000000&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 交易的价格</span>
+      <span class="token property">&quot;qty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1.00000000&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 交易的数量</span>
+      <span class="token property">&quot;commission&quot;</span><span class="token operator">:</span> <span class="token string">&quot;4.00000000&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 手续费金额</span>
+      <span class="token property">&quot;commissionAsset&quot;</span><span class="token operator">:</span> <span class="token string">&quot;USDT&quot;</span> <span class="token comment">// 手续费的币种</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;3999.00000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;qty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5.00000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;commission&quot;</span><span class="token operator">:</span> <span class="token string">&quot;19.99500000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;commissionAsset&quot;</span><span class="token operator">:</span> <span class="token string">&quot;USDT&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;3998.00000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;qty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2.00000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;commission&quot;</span><span class="token operator">:</span> <span class="token string">&quot;7.99600000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;commissionAsset&quot;</span><span class="token operator">:</span> <span class="token string">&quot;USDT&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;3997.00000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;qty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1.00000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;commission&quot;</span><span class="token operator">:</span> <span class="token string">&quot;3.99700000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;commissionAsset&quot;</span><span class="token operator">:</span> <span class="token string">&quot;USDT&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;3995.00000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;qty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1.00000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;commission&quot;</span><span class="token operator">:</span> <span class="token string">&quot;3.99500000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;commissionAsset&quot;</span><span class="token operator">:</span> <span class="token string">&quot;USDT&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>POST /api/v3/order (HMAC SHA256)</code></p> <p>发送下单。</p> <p><strong>权重:</strong>
+1</p> <p><strong>参数:</strong></p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>symbol</td> <td>STRING</td> <td>YES</td> <td></td></tr> <tr><td>side</td> <td>ENUM</td> <td>YES</td> <td></td></tr> <tr><td>type</td> <td>ENUM</td> <td>YES</td> <td></td></tr> <tr><td>timeInForce</td> <td>ENUM</td> <td>NO</td> <td></td></tr> <tr><td>quantity</td> <td>DECIMAL</td> <td>NO</td> <td></td></tr> <tr><td>quoteOrderQty</td> <td>DECIMAL</td> <td>NO</td> <td></td></tr> <tr><td>price</td> <td>DECIMAL</td> <td>NO</td> <td></td></tr> <tr><td>newClientOrderId</td> <td>STRING</td> <td>NO</td> <td>客户自定义的唯一订单ID。 如果未发送，则自动生成</td></tr> <tr><td>stopPrice</td> <td>DECIMAL</td> <td>NO</td> <td>仅 <code>STOP_LOSS</code>, <code>STOP_LOSS_LIMIT</code>, <code>TAKE_PROFIT</code>, 和<code>TAKE_PROFIT_LIMIT</code> 需要此参数。</td></tr> <tr><td>icebergQty</td> <td>DECIMAL</td> <td>NO</td> <td>仅使用 <code>LIMIT</code>, <code>STOP_LOSS_LIMIT</code>, 和 <code>TAKE_PROFIT_LIMIT</code> 创建新的 iceberg 订单时需要此参数</td></tr> <tr><td>newOrderRespType</td> <td>ENUM</td> <td>NO</td> <td>设置响应JSON。 ACK，RESULT或FULL； &quot;MARKET&quot;和&quot; LIMIT&quot;订单类型默认为&quot;FULL&quot;，所有其他订单默认为&quot;ACK&quot;。</td></tr> <tr><td>recvWindow</td> <td>LONG</td> <td>NO</td> <td>赋值不能大于 <code>60000</code></td></tr> <tr><td>timestamp</td> <td>LONG</td> <td>YES</td> <td></td></tr></tbody></table> <p>基于订单 <code>type</code>不同，强制要求某些参数:</p> <table><thead><tr><th>类型</th> <th>强制要求的参数</th></tr></thead> <tbody><tr><td><code>LIMIT</code></td> <td><code>timeInForce</code>, <code>quantity</code>, <code>price</code></td></tr> <tr><td><code>MARKET</code></td> <td><code>quantity</code> or <code>quoteOrderQty</code></td></tr> <tr><td><code>STOP_LOSS</code></td> <td><code>quantity</code>, <code>stopPrice</code></td></tr> <tr><td><code>STOP_LOSS_LIMIT</code></td> <td><code>timeInForce</code>, <code>quantity</code>,  <code>price</code>, <code>stopPrice</code></td></tr> <tr><td><code>TAKE_PROFIT</code></td> <td><code>quantity</code>, <code>stopPrice</code></td></tr> <tr><td><code>TAKE_PROFIT_LIMIT</code></td> <td><code>timeInForce</code>, <code>quantity</code>, <code>price</code>, <code>stopPrice</code></td></tr> <tr><td><code>LIMIT_MAKER</code></td> <td><code>quantity</code>, <code>price</code></td></tr></tbody></table> <p>其他信息:</p> <ul><li><code>LIMIT_MAKER</code>是<code>LIMIT</code>订单，如果它们立即匹配并成为吃单方将被拒绝。</li> <li>当触发<code>stopPrice</code>时，<code>STOP_LOSS</code>和<code>TAKE_PROFIT</code>将执行<code>MARKET</code>订单。</li> <li>任何<code>LIMIT</code>或<code>LIMIT_MAKER</code>类型的订单都可以通过发送<code>icebergQty</code>而成为<code>iceberg</code>订单。</li> <li>任何带有<code>icebergQty</code>的订单都必须将<code>timeInForce</code>设置为<code>GTC</code>。</li> <li>使用 <code>quantity</code> 的市价单 <code>MARKET</code> 明确的是用户想用市价单买入或卖出的数量。
+<ul><li>比如在<code>BTCUSDT</code>上下一个市价单, <code>quantity</code>用户指明能够买进或者卖出多少BTC。</li></ul></li> <li>使用 <code>quoteOrderQty</code> 的市价单<code>MARKET</code> 明确的是通过买入(或卖出)想要花费(或获取)的报价资产数量; 此时的正确报单数量将会以市场流动性和<code>quoteOrderQty</code>被计算出来。
+<ul><li>以<code>BTCUSDT</code>为例, <code>quoteOrderQty=100</code>:
+* 下买单的时候, 订单会尽可能的买进价值100USDT的BTC.
+* 下卖单的时候, 订单会尽可能的卖出价值100USDT的BTC.</li></ul></li> <li>使用 <code>quoteOrderQty</code> 的市价单<code>MARKET</code>不会突破<code>LOT_SIZE</code>的限制规则; 报单会按给定的<code>quoteOrderQty</code>尽可能接近地被执行。</li> <li>除非之前的订单已经成交, 不然设置了相同的<code>newClientOrderId</code>订单会被拒绝。</li></ul> <p>MARKET版本和LIMIT版本针对市场价格触发订单价格规则：</p> <ul><li>价格高于市价：<code>止损``买入</code>，<code>获利``卖出</code></li> <li>价格低于市价：<code>止损``卖出</code>，<code>获利``买入</code></li></ul> <p>关于 newOrderRespType的三种选择</p> <ul><li><strong>Response ACK:</strong> 返回速度最快，不包含成交信息，信息量最少</li> <li>**Response RESULT:**返回速度居中，返回吃单成交的少量信息</li> <li><strong>Response FULL:</strong> 返回速度最慢，返回吃单成交的详细信息</li></ul> <h2 id="撤销订单-trade"><a href="#撤销订单-trade" class="header-anchor">#</a> 撤销订单 (TRADE)</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;origClientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;myOrder1&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">-1</span><span class="token punctuation">,</span> <span class="token comment">//Unless part of an OCO, the value will always be -1.</span>
+  <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;cancelMyOrder1&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2.00000000&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;origQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1.00000000&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;executedQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.00000000&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;cummulativeQuoteQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.00000000&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;CANCELED&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;timeInForce&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GTC&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LIMIT&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;side&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BUY&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>DELETE /api/v3/order (HMAC SHA256)</code></p> <p>取消有效订单。</p> <p><strong>权重:</strong>
+1</p> <p><strong>参数:</strong></p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>symbol</td> <td>STRING</td> <td>YES</td> <td></td></tr> <tr><td>orderId</td> <td>LONG</td> <td>NO</td> <td></td></tr> <tr><td>origClientOrderId</td> <td>STRING</td> <td>NO</td> <td></td></tr> <tr><td>newClientOrderId</td> <td>STRING</td> <td>NO</td> <td>用户自定义的本次撤销操作的ID(注意不是被撤销的订单的自定义ID)。如无指定会自动赋值。</td></tr> <tr><td>recvWindow</td> <td>LONG</td> <td>NO</td> <td>赋值不得大于 <code>60000</code></td></tr> <tr><td>timestamp</td> <td>LONG</td> <td>YES</td> <td></td></tr></tbody></table> <p><code>orderId</code> 或 <code>origClientOrderId</code> 必须至少发送一个</p> <h2 id="撤销单一交易对的所有挂单-trade"><a href="#撤销单一交易对的所有挂单-trade" class="header-anchor">#</a> 撤销单一交易对的所有挂单 (TRADE)</h2> <blockquote><p><strong>Response:</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BTCUSDT&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;origClientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;E6APeyTJvkMvLMYMqu1KQ4&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">11</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">-1</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;pXLV6Hz6mprAcVYpVMTGgx&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.089853&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;origQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.178622&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;executedQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.000000&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;cummulativeQuoteQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.000000&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;CANCELED&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;timeInForce&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GTC&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LIMIT&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;side&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BUY&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BTCUSDT&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;origClientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;A3EF2HCwxgZPFMrfwbgrhv&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">13</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">-1</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;pXLV6Hz6mprAcVYpVMTGgx&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.090430&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;origQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.178622&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;executedQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.000000&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;cummulativeQuoteQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.000000&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;CANCELED&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;timeInForce&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GTC&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LIMIT&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;side&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BUY&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">1929</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;contingencyType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;OCO&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;listStatusType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ALL_DONE&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;listOrderStatus&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ALL_DONE&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;listClientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2inzWQdDvZLHbbAmAozX2N&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;transactionTime&quot;</span><span class="token operator">:</span> <span class="token number">1585230948299</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BTCUSDT&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;orders&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BTCUSDT&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">20</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;CwOOIPHSmYywx6jZX77TdL&quot;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BTCUSDT&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">21</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;461cPg51vQjV3zIMOXNz39&quot;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;orderReports&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BTCUSDT&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;origClientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;CwOOIPHSmYywx6jZX77TdL&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">20</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">1929</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;pXLV6Hz6mprAcVYpVMTGgx&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.668611&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;origQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.690354&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;executedQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.000000&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;cummulativeQuoteQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.000000&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;CANCELED&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;timeInForce&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GTC&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;STOP_LOSS_LIMIT&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;side&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BUY&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;stopPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.378131&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;icebergQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.017083&quot;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BTCUSDT&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;origClientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;461cPg51vQjV3zIMOXNz39&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">21</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">1929</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;pXLV6Hz6mprAcVYpVMTGgx&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.008791&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;origQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.690354&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;executedQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.000000&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;cummulativeQuoteQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.000000&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;CANCELED&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;timeInForce&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GTC&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LIMIT_MAKER&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;side&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BUY&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;icebergQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.639962&quot;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre></div><p><code>DELETE api/v3/openOrders</code></p> <p>撤销单一交易对下所有挂单, 包括OCO的挂单。</p> <p><strong>权重:</strong>
+1</p> <p><strong>参数:</strong></p> <table><thead><tr><th>Name</th> <th>Type</th> <th>Mandatory</th> <th>Description</th></tr></thead> <tbody><tr><td>symbol</td> <td>STRING</td> <td>YES</td> <td></td></tr> <tr><td>recvWindow</td> <td>LONG</td> <td>NO</td> <td>不能大于 <code>60000</code></td></tr> <tr><td>timestamp</td> <td>LONG</td> <td>YES</td> <td></td></tr></tbody></table> <h2 id="查询订单-user-data"><a href="#查询订单-user-data" class="header-anchor">#</a> 查询订单 (USER_DATA)</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 交易对</span>
+  <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token comment">// 系统的订单ID</span>
+  <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">-1</span><span class="token punctuation">,</span> <span class="token comment">// OCO订单的ID，不然就是-1</span>
+  <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;myOrder1&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 客户自己设置的ID</span>
+  <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.1&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 订单价格</span>
+  <span class="token property">&quot;origQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1.0&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 用户设置的原始订单数量</span>
+  <span class="token property">&quot;executedQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.0&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 交易的订单数量</span>
+  <span class="token property">&quot;cummulativeQuoteQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.0&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 累计交易的金额</span>
+  <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;NEW&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 订单状态</span>
+  <span class="token property">&quot;timeInForce&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GTC&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 订单的时效方式</span>
+  <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LIMIT&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 订单类型， 比如市价单，现价单等</span>
+  <span class="token property">&quot;side&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BUY&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 订单方向，买还是卖</span>
+  <span class="token property">&quot;stopPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.0&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 止损价格</span>
+  <span class="token property">&quot;icebergQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.0&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 冰山数量</span>
+  <span class="token property">&quot;time&quot;</span><span class="token operator">:</span> <span class="token number">1499827319559</span><span class="token punctuation">,</span> <span class="token comment">// 订单时间</span>
+  <span class="token property">&quot;updateTime&quot;</span><span class="token operator">:</span> <span class="token number">1499827319559</span><span class="token punctuation">,</span> <span class="token comment">// 最后更新时间</span>
+  <span class="token property">&quot;isWorking&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// 订单是否出现在orderbook中</span>
+  <span class="token property">&quot;origQuoteOrderQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.000000&quot;</span> <span class="token comment">// 原始的交易金额</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>GET /api/v3/order (HMAC SHA256)</code></p> <p>查询订单状态。</p> <p><strong>权重:</strong>
+1</p> <p><strong>参数:</strong></p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>symbol</td> <td>STRING</td> <td>YES</td> <td></td></tr> <tr><td>orderId</td> <td>LONG</td> <td>NO</td> <td></td></tr> <tr><td>origClientOrderId</td> <td>STRING</td> <td>NO</td> <td></td></tr> <tr><td>recvWindow</td> <td>LONG</td> <td>NO</td> <td>赋值不得大于 <code>60000</code></td></tr> <tr><td>timestamp</td> <td>LONG</td> <td>YES</td> <td></td></tr></tbody></table> <p>注意:</p> <ul><li>至少需要发送 <code>orderId</code> 与 <code>origClientOrderId</code>中的一个</li> <li>某些订单中<code>cummulativeQuoteQty</code>&lt;0，是由于这些订单是cummulativeQuoteQty功能上线之前的订单。</li></ul> <h2 id="当前挂单-user-data"><a href="#当前挂单-user-data" class="header-anchor">#</a> 当前挂单 (USER_DATA)</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">-1</span><span class="token punctuation">,</span> <span class="token comment">//Unless OCO, the value will always be -1</span>
+    <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;myOrder1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;origQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;executedQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;cummulativeQuoteQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;NEW&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;timeInForce&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GTC&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LIMIT&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;side&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BUY&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;stopPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;icebergQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;time&quot;</span><span class="token operator">:</span> <span class="token number">1499827319559</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;updateTime&quot;</span><span class="token operator">:</span> <span class="token number">1499827319559</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;isWorking&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;origQuoteOrderQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.000000&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre></div><p><code>GET /api/v3/openOrders (HMAC SHA256)</code></p> <p>获取交易对的所有当前挂单， 请小心使用不带交易对参数的调用。</p> <p><strong>权重:</strong>
+1 单一交易对;<br>
+2交易对参数缺失</p> <p><strong>参数:</strong></p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>symbol</td> <td>STRING</td> <td>NO</td> <td></td></tr> <tr><td>recvWindow</td> <td>LONG</td> <td>NO</td> <td>赋值不得大于 <code>60000</code></td></tr> <tr><td>timestamp</td> <td>LONG</td> <td>YES</td> <td></td></tr></tbody></table> <ul><li>不带symbol参数，会返回所有交易对的挂单</li></ul> <h2 id="查询所有订单-user-data"><a href="#查询所有订单-user-data" class="header-anchor">#</a> 查询所有订单 (USER_DATA)</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">-1</span><span class="token punctuation">,</span> <span class="token comment">//Unless OCO, the value will always be -1</span>
+    <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;myOrder1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;origQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;executedQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;cummulativeQuoteQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;NEW&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;timeInForce&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GTC&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LIMIT&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;side&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BUY&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;stopPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;icebergQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;time&quot;</span><span class="token operator">:</span> <span class="token number">1499827319559</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;updateTime&quot;</span><span class="token operator">:</span> <span class="token number">1499827319559</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;isWorking&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;origQuoteOrderQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.000000&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre></div><p><code>GET /api/v3/allOrders (HMAC SHA256)</code></p> <p>获取所有帐户订单； 有效，已取消或已完成。</p> <p><strong>权重:</strong>
+5 带有symbol</p> <p><strong>参数:</strong></p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>symbol</td> <td>STRING</td> <td>YES</td> <td></td></tr> <tr><td>orderId</td> <td>LONG</td> <td>NO</td> <td></td></tr> <tr><td>startTime</td> <td>LONG</td> <td>NO</td> <td></td></tr> <tr><td>endTime</td> <td>LONG</td> <td>NO</td> <td></td></tr> <tr><td>limit</td> <td>INT</td> <td>NO</td> <td>默认 500; 最大 1000.</td></tr> <tr><td>recvWindow</td> <td>LONG</td> <td>NO</td> <td>赋值不得大于 <code>60000</code></td></tr> <tr><td>timestamp</td> <td>LONG</td> <td>YES</td> <td></td></tr></tbody></table> <p><strong>注意:</strong></p> <ul><li>如设置 <code>orderId</code> , 订单量将 &gt;=  <code>orderId</code>。否则将返回最新订单。</li> <li>一些历史订单 <code>cummulativeQuoteQty</code>  &lt; 0, 是指数据此时不存在。</li></ul> <h2 id="oco下单-trade"><a href="#oco下单-trade" class="header-anchor">#</a> OCO下单(TRADE)</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;contingencyType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;OCO&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;listStatusType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;EXEC_STARTED&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;listOrderStatus&quot;</span><span class="token operator">:</span> <span class="token string">&quot;EXECUTING&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;listClientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;JYVpp3F0f5CAG15DhtrqLp&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;transactionTime&quot;</span><span class="token operator">:</span> <span class="token number">1563417480525</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;orders&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Kk7sqHb9J6mJWTMDVW7Vos&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;xTXKaGYd4bluPVp78IVRvl&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;orderReports&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Kk7sqHb9J6mJWTMDVW7Vos&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;transactTime&quot;</span><span class="token operator">:</span> <span class="token number">1563417480525</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;origQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.624363&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;executedQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;cummulativeQuoteQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;NEW&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;timeInForce&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GTC&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;STOP_LOSS&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;side&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BUY&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;stopPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.960664&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;xTXKaGYd4bluPVp78IVRvl&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;transactTime&quot;</span><span class="token operator">:</span> <span class="token number">1563417480525</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.036435&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;origQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.624363&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;executedQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;cummulativeQuoteQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;NEW&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;timeInForce&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GTC&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LIMIT_MAKER&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;side&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BUY&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>POST /api/v3/order/oco (HMAC SHA256)</code></p> <p><strong>权重</strong>: 1</p> <p>发送新 OCO 订单</p> <p><strong>参数</strong>:</p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>symbol</td> <td>STRING</td> <td>YES</td> <td></td></tr> <tr><td>listClientOrderId</td> <td>STRING</td> <td>NO</td> <td>整个orderList的唯一ID</td></tr> <tr><td>side</td> <td>ENUM</td> <td>YES</td> <td></td></tr> <tr><td>quantity</td> <td>DECIMAL</td> <td>YES</td> <td></td></tr> <tr><td>limitClientOrderId</td> <td>STRING</td> <td>NO</td> <td>限价单的唯一ID</td></tr> <tr><td>price</td> <td>DECIMAL</td> <td>YES</td> <td></td></tr> <tr><td>limitIcebergQty</td> <td>DECIMAL</td> <td>NO</td> <td></td></tr> <tr><td>stopClientOrderId</td> <td>STRING</td> <td>NO</td> <td>止损/止损限价单的唯一ID</td></tr> <tr><td>stopPrice</td> <td>DECIMAL</td> <td>YES</td> <td></td></tr> <tr><td>stopLimitPrice</td> <td>DECIMAL</td> <td>NO</td> <td>如果提供，须配合提交<code>stopLimitTimeInForce</code></td></tr> <tr><td>stopIcebergQty</td> <td>DECIMAL</td> <td>NO</td> <td></td></tr> <tr><td>stopLimitTimeInForce</td> <td>ENUM</td> <td>NO</td> <td>有效值 <code>GTC</code>/<code>FOK</code>/<code>IOC</code></td></tr> <tr><td>newOrderRespType</td> <td>ENUM</td> <td>NO</td> <td>Set the response JSON.</td></tr> <tr><td>recvWindow</td> <td>LONG</td> <td>NO</td> <td>不能大于 <code>60000</code></td></tr> <tr><td>timestamp</td> <td>LONG</td> <td>YES</td> <td></td></tr></tbody></table> <p>其他信息:</p> <ul><li>价格限制:
+<ul><li><code>SELL</code>: 限价 &gt; 最新成交价 &gt;触发价</li> <li><code>BUY</code>: 限价 &lt; 最新成交价 &lt; 触发价</li></ul></li> <li>数量限制:
+<ul><li>两个 legs 必须具有同样的数量。</li> <li><code>ICEBERG</code>数量不必相同</li></ul></li> <li>下单rate
+<ul><li>一个<code>OCO</code>订单被算成2个普通订单.</li></ul></li></ul> <h2 id="取消-oco-订单-trade"><a href="#取消-oco-订单-trade" class="header-anchor">#</a> 取消 OCO 订单(TRADE)</h2> <blockquote><p><strong>Response:</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;contingencyType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;OCO&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;listStatusType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ALL_DONE&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;listOrderStatus&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ALL_DONE&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;listClientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;C3wyj4WVEktd7u9aVBRXcN&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;transactionTime&quot;</span><span class="token operator">:</span> <span class="token number">1574040868128</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;orders&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;pO9ufTiFGg3nw2fOdgeOXa&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TXOvglzXuaubXAaENpaRCB&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;orderReports&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;origClientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;pO9ufTiFGg3nw2fOdgeOXa&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;unfWT8ig8i0uj6lPuYLez6&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1.00000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;origQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;10.00000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;executedQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.00000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;cummulativeQuoteQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.00000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;CANCELED&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;timeInForce&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GTC&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;STOP_LOSS_LIMIT&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;side&quot;</span><span class="token operator">:</span> <span class="token string">&quot;SELL&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;stopPrice&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1.00000000&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;origClientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;TXOvglzXuaubXAaENpaRCB&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;unfWT8ig8i0uj6lPuYLez6&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;3.00000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;origQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;10.00000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;executedQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.00000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;cummulativeQuoteQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.00000000&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;status&quot;</span><span class="token operator">:</span> <span class="token string">&quot;CANCELED&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;timeInForce&quot;</span><span class="token operator">:</span> <span class="token string">&quot;GTC&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LIMIT_MAKER&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;side&quot;</span><span class="token operator">:</span> <span class="token string">&quot;SELL&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>DELETE /api/v3/orderList (HMAC SHA256)</code></p> <p><strong>权重</strong>: 1</p> <p>取消整个订单列表。</p> <p><strong>参数</strong></p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>symbol</td> <td>STRING</td> <td>YES</td> <td></td></tr> <tr><td>orderListId</td> <td>LONG</td> <td>NO</td> <td><code>orderListId</code> 或 <code>listClientOrderId</code> 必须被提供</td></tr> <tr><td>listClientOrderId</td> <td>STRING</td> <td>NO</td> <td><code>orderListId</code> 或 <code>listClientOrderId</code> 必须被提供</td></tr> <tr><td>newClientOrderId</td> <td>STRING</td> <td>NO</td> <td>用户自定义的本次撤销操作的ID(注意不是被撤销的订单的自定义ID)。如无指定会自动赋值。</td></tr> <tr><td>recvWindow</td> <td>LONG</td> <td>NO</td> <td>不能大于 <code>60000</code></td></tr> <tr><td>timestamp</td> <td>LONG</td> <td>YES</td> <td></td></tr></tbody></table> <p>其他注意点:</p> <ul><li>取消单个 leg 将取消整个 OCO 订单。</li></ul> <h2 id="查询-oco-user-data"><a href="#查询-oco-user-data" class="header-anchor">#</a> 查询 OCO (USER_DATA)</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">27</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;contingencyType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;OCO&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;listStatusType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;EXEC_STARTED&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;listOrderStatus&quot;</span><span class="token operator">:</span> <span class="token string">&quot;EXECUTING&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;listClientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;h2USkA5YQpaXHPIrkd96xE&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;transactionTime&quot;</span><span class="token operator">:</span> <span class="token number">1565245656253</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;orders&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;qD1gy3kc3Gx0rihm9Y3xwS&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ARzZ9I00CPM8i3NhmU9Ega&quot;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>GET /api/v3/orderList (HMAC SHA256)</code></p> <p><strong>权重</strong>: 1</p> <p>根据提供的可选参数检索特定的OCO。</p> <p><strong>参数</strong>:</p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>orderListId</td> <td>LONG</td> <td>NO</td> <td><code>orderListId</code> 或 <code>listClientOrderId</code> 必须提供一个。</td></tr> <tr><td>origClientOrderId</td> <td>STRING</td> <td>NO</td> <td><code>orderListId</code> 或 <code>listClientOrderId</code> 必须提供一个。</td></tr> <tr><td>recvWindow</td> <td>LONG</td> <td>NO</td> <td>赋值不得大于 <code>60000</code></td></tr> <tr><td>timestamp</td> <td>LONG</td> <td>YES</td> <td></td></tr></tbody></table> <h2 id="查询所有-oco-user-data"><a href="#查询所有-oco-user-data" class="header-anchor">#</a> 查询所有 OCO (USER_DATA)</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">29</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;contingencyType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;OCO&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;listStatusType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;EXEC_STARTED&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;listOrderStatus&quot;</span><span class="token operator">:</span> <span class="token string">&quot;EXECUTING&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;listClientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;amEEAXryFzFwYF1FeRpUoZ&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;transactionTime&quot;</span><span class="token operator">:</span> <span class="token number">1565245913483</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;orders&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;oD7aesZqjEGlZrbtRpy5zB&quot;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Jr1h6xirOxgeJOUuYQS7V3&quot;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">28</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;contingencyType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;OCO&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;listStatusType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;EXEC_STARTED&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;listOrderStatus&quot;</span><span class="token operator">:</span> <span class="token string">&quot;EXECUTING&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;listClientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;hG7hFNxJV6cZy3Ze4AUT4d&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;transactionTime&quot;</span><span class="token operator">:</span> <span class="token number">1565245913407</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;orders&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;j6lFOfbmFMRjTYA7rRJ0LP&quot;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;z0KCjOdditiLS5ekAFtK81&quot;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre></div><p><code>GET /api/v3/allOrderList (HMAC SHA256)</code></p> <p><strong>权重</strong>: 10</p> <p>根据提供的可选参数检索所有的OCO。</p> <p><strong>参数</strong></p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>fromId</td> <td>LONG</td> <td>NO</td> <td>提供该项后, <code>startTime</code> 和 <code>endTime</code> 都不可提供</td></tr> <tr><td>startTime</td> <td>LONG</td> <td>NO</td> <td></td></tr> <tr><td>endTime</td> <td>LONG</td> <td>NO</td> <td></td></tr> <tr><td>limit</td> <td>INT</td> <td>NO</td> <td>默认值: 500; 最大值: 1000</td></tr> <tr><td>recvWindow</td> <td>LONG</td> <td>NO</td> <td>赋值不能超过 <code>60000</code></td></tr> <tr><td>timestamp</td> <td>LONG</td> <td>YES</td> <td></td></tr></tbody></table> <h2 id="查询-oco-挂单-user-data"><a href="#查询-oco-挂单-user-data" class="header-anchor">#</a> 查询 OCO 挂单 (USER_DATA)</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">31</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;contingencyType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;OCO&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;listStatusType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;EXEC_STARTED&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;listOrderStatus&quot;</span><span class="token operator">:</span> <span class="token string">&quot;EXECUTING&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;listClientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;wuB13fmulKj3YjdqWEcsnp&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;transactionTime&quot;</span><span class="token operator">:</span> <span class="token number">1565246080644</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1565246079109&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;orders&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;r3EH2N76dHfLoSZWIUw1bT&quot;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTCBTC&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;clientOrderId&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Cv1SnyPD3qhqpbjpYEHbd2&quot;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre></div><p><code>GET /api/v3/openOrderList (HMAC SHA256)</code></p> <p>权重: 2</p> <p><strong>参数</strong></p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>recvWindow</td> <td>LONG</td> <td>NO</td> <td>赋值不能大于 <code>60000</code></td></tr> <tr><td>timestamp</td> <td>LONG</td> <td>YES</td> <td></td></tr></tbody></table> <h2 id="账户信息-user-data"><a href="#账户信息-user-data" class="header-anchor">#</a> 账户信息 (USER_DATA)</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;makerCommission&quot;</span><span class="token operator">:</span> <span class="token number">15</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;takerCommission&quot;</span><span class="token operator">:</span> <span class="token number">15</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;buyerCommission&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;sellerCommission&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;canTrade&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;canWithdraw&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;canDeposit&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;updateTime&quot;</span><span class="token operator">:</span> <span class="token number">123456789</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;accountType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;SPOT&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;balances&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;asset&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BTC&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;free&quot;</span><span class="token operator">:</span> <span class="token string">&quot;4723846.89208129&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;locked&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.00000000&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;asset&quot;</span><span class="token operator">:</span> <span class="token string">&quot;LTC&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;free&quot;</span><span class="token operator">:</span> <span class="token string">&quot;4763368.68006011&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;locked&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.00000000&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;permissions&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">&quot;SPOT&quot;</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>GET /api/v3/account (HMAC SHA256)</code></p> <p>获取当前账户信息。</p> <p><strong>权重:</strong>
+5</p> <p><strong>参数:</strong></p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>recvWindow</td> <td>LONG</td> <td>NO</td> <td>赋值不能大于 <code>60000</code></td></tr> <tr><td>timestamp</td> <td>LONG</td> <td>YES</td> <td></td></tr></tbody></table> <h2 id="账户成交历史-user-data"><a href="#账户成交历史-user-data" class="header-anchor">#</a> 账户成交历史 (USER_DATA)</h2> <blockquote><p><strong>响应</strong></p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BNBBTC&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 交易对</span>
+    <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">28457</span><span class="token punctuation">,</span> <span class="token comment">// trade ID</span>
+    <span class="token property">&quot;orderId&quot;</span><span class="token operator">:</span> <span class="token number">100234</span><span class="token punctuation">,</span> <span class="token comment">// 订单ID</span>
+    <span class="token property">&quot;orderListId&quot;</span><span class="token operator">:</span> <span class="token number">-1</span><span class="token punctuation">,</span> <span class="token comment">// OCO订单的ID，不然就是-1</span>
+    <span class="token property">&quot;price&quot;</span><span class="token operator">:</span> <span class="token string">&quot;4.00000100&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 成交价格</span>
+    <span class="token property">&quot;qty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;12.00000000&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 成交数量</span>
+    <span class="token property">&quot;quoteQty&quot;</span><span class="token operator">:</span> <span class="token string">&quot;48.000012&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 成交金额</span>
+    <span class="token property">&quot;commission&quot;</span><span class="token operator">:</span> <span class="token string">&quot;10.10000000&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 交易费金额</span>
+    <span class="token property">&quot;commissionAsset&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BNB&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 交易费资产类型</span>
+    <span class="token property">&quot;time&quot;</span><span class="token operator">:</span> <span class="token number">1499865549590</span><span class="token punctuation">,</span> <span class="token comment">// 交易时间</span>
+    <span class="token property">&quot;isBuyer&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// 是否是买家</span>
+    <span class="token property">&quot;isMaker&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// 是否是挂单方</span>
+    <span class="token property">&quot;isBestMatch&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre></div><p><code>GET /api/v3/myTrades (HMAC SHA256)</code></p> <p>获取账户指定交易对的成交历史</p> <p><strong>权重:</strong>
+5</p> <p><strong>参数:</strong></p> <table><thead><tr><th>名称</th> <th>类型</th> <th>是否必需</th> <th>描述</th></tr></thead> <tbody><tr><td>symbol</td> <td>STRING</td> <td>YES</td> <td></td></tr> <tr><td>startTime</td> <td>LONG</td> <td>NO</td> <td></td></tr> <tr><td>endTime</td> <td>LONG</td> <td>NO</td> <td></td></tr> <tr><td>fromId</td> <td>LONG</td> <td>NO</td> <td>起始Trade id。 默认获取最新交易。</td></tr> <tr><td>limit</td> <td>INT</td> <td>NO</td> <td>默认 500; 最大 1000.</td></tr> <tr><td>recvWindow</td> <td>LONG</td> <td>NO</td> <td>赋值不能超过 <code>60000</code></td></tr> <tr><td>timestamp</td> <td>LONG</td> <td>YES</td> <td></td></tr></tbody></table> <p><strong>注意:</strong></p> <ul><li>如果设定 <code>fromId</code> , 获取订单 &gt;= <code>fromId</code>.
+否则返回最近订单。</li></ul></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">8/5/2020, 12:29:57 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="market_endpoints.html" class="prev">
+        行情接口
+      </a></span> <span class="next"><a href="wallet_endpoints.html">
+        钱包接口
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="../../../assets/js/app.a1ad5869.js" defer></script><script src="../../../assets/js/2.a3268d1a.js" defer></script><script src="../../../assets/js/61.0556f72d.js" defer></script>
+  </body>
+</html>
