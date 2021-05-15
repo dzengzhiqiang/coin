@@ -29,19 +29,20 @@ func (m *HuoBi) Close() {
 }
 
 //query spot account balance
-func (m *HuoBi) SpotBalances() *types.SpotBalances {
+func (m *HuoBi) SpotBalances() (balances *types.SpotBalances, code types.BizCode) {
 	log.Debugf("query spot balance")
-	return nil
+	return
 }
 
 //query spot coin price
-func (m *HuoBi) SpotPrice(cs *types.CoinSymbol) *types.CoinPrice {
+func (m *HuoBi) SpotPrice(cs *types.CoinSymbol) (price *types.CoinPrice, code types.BizCode) {
 	log.Debugf("query spot price")
-	return nil
+
+	return
 }
 
 //trade spot coin
-func (m *HuoBi) SpotTrade(trade types.SpotTradeRequest) *types.SpotTradeResponse {
+func (m *HuoBi) SpotTrade(trade types.SpotTradeRequest) (response *types.SpotTradeResponse, code types.BizCode) {
 	log.Debugf("spot trade")
-	return nil
+	return
 }

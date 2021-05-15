@@ -16,7 +16,7 @@ import (
 const (
 	VERSION      = "v0.1.0"
 	PROGRAM_NAME = "coin"
-	UPDATE_DATE  = "2021-05-08"
+	UPDATE_DATE  = "2021-05-10"
 )
 
 const (
@@ -26,7 +26,7 @@ const (
 
 const (
 	SUB_CMD_NAME_RUN     = "run"
-	SUB_CMD_NAME_BALANCE = "balance"
+	SUB_CMD_NAME_ACCOUNT = "account"
 	SUB_CMD_NAME_TRADE   = "trade"
 	SUB_CMD_NAME_PRICE   = "price"
 )
@@ -121,12 +121,21 @@ var binanceCmd = &cli.Command{
 		if cfg == nil {
 			return fmt.Errorf("load config file failed")
 		}
+		if ctx.IsSet(CMD_FLAG_NAME_APPID) {
+			cfg.AppId = ctx.String(CMD_FLAG_NAME_APPID)
+		}
+		if ctx.IsSet(CMD_FLAG_NAME_APPKEY) {
+			cfg.AppKey = ctx.String(CMD_FLAG_NAME_APPKEY)
+		}
+		if ctx.IsSet(CMD_FLAG_NAME_APPSECRET) {
+			cfg.AppSecret = ctx.String(CMD_FLAG_NAME_APPSECRET)
+		}
 		coin = binance.NewCoinManager(cfg)
 		return nil
 	},
 	Subcommands: []*cli.Command{
 		runSubCmd,
-		balanceSubCmd,
+		accountSubCmd,
 		priceSubCmd,
 		tradeSubCmd,
 	},
@@ -161,12 +170,21 @@ var huobiCmd = &cli.Command{
 		if cfg == nil {
 			return fmt.Errorf("load config file failed")
 		}
+		if ctx.IsSet(CMD_FLAG_NAME_APPID) {
+			cfg.AppId = ctx.String(CMD_FLAG_NAME_APPID)
+		}
+		if ctx.IsSet(CMD_FLAG_NAME_APPKEY) {
+			cfg.AppKey = ctx.String(CMD_FLAG_NAME_APPKEY)
+		}
+		if ctx.IsSet(CMD_FLAG_NAME_APPSECRET) {
+			cfg.AppSecret = ctx.String(CMD_FLAG_NAME_APPSECRET)
+		}
 		coin = huobi.NewCoinManager(cfg)
 		return nil
 	},
 	Subcommands: []*cli.Command{
 		runSubCmd,
-		balanceSubCmd,
+		accountSubCmd,
 		priceSubCmd,
 		tradeSubCmd,
 	},
@@ -178,16 +196,17 @@ var runSubCmd = &cli.Command{
 	Flags: []cli.Flag{},
 	Action: func(cctx *cli.Context) error {
 		log.Debugf("run sub command action")
-		return nil
+		return coin.Run()
 	},
 }
 
-var balanceSubCmd = &cli.Command{
-	Name:  SUB_CMD_NAME_BALANCE,
-	Usage: "query balances",
+var accountSubCmd = &cli.Command{
+	Name:  SUB_CMD_NAME_ACCOUNT,
+	Usage: "query account balances",
 	Flags: []cli.Flag{},
 	Action: func(cctx *cli.Context) error {
-
+		balances, _ := coin.SpotBalances()
+		log.Json(balances)
 		return nil
 	},
 }
