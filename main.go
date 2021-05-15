@@ -216,7 +216,12 @@ var priceSubCmd = &cli.Command{
 	Usage: "query coin price",
 	Flags: []cli.Flag{},
 	Action: func(cctx *cli.Context) error {
-
+		if cctx.Args().Len() == 0 {
+			log.Errorf("please input symbol to query price")
+			return nil
+		}
+		price, _ := coin.SpotPrice(cctx.Args().First())
+		log.Json(price)
 		return nil
 	},
 }

@@ -15,7 +15,7 @@ type CoinApi interface {
 	SpotBalances() (*types.SpotBalances, types.BizCode)
 
 	//query spot coin price
-	SpotPrice(cs *types.CoinSymbol) (*types.CoinPrice, types.BizCode)
+	SpotPrice(symbol string) (*types.CoinPrice, types.BizCode)
 
 	//trade spot coin
 	SpotTrade(trade types.SpotTradeRequest) (*types.SpotTradeResponse, types.BizCode)

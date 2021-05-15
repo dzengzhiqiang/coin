@@ -24,7 +24,10 @@ const (
 	binance_api_host = "https://api.binance.com"
 )
 const (
-	api_v3_account = "/api/v3/account"
+	api_v3_account      = "/api/v3/account"      //现货账户
+	api_v3_order        = "/api/v3/order/test"   //下单
+	api_v3_avg_price    = "/api/v3/avgPrice"     //平均价格
+	api_v3_ticker_price = "/api/v3/ticker/price" //最新价格
 )
 
 const (
@@ -48,7 +51,7 @@ func NewCoinManager(cfg *config.Config) api.CoinApi {
 	return &Binance{
 		cfg:    cfg,
 		sign:   NewSignature(cfg),
-		client: httpc.NewHttpClient(15),
+		client: httpc.NewHttpClient(60),
 	}
 }
 
@@ -71,15 +74,15 @@ func (m *Binance) SpotBalances() (balances *types.SpotBalances, code types.BizCo
 	strQuery, strSign := m.sign.Sign(url.Values{
 		paramTimestamp: []string{utils.UnixMilliSecond().String()},
 	})
-	strUrl := m.makeUrl(binance_api_host, api_v3_account, strQuery, strSign)
+	strUrl := m.makeSignUrl(binance_api_host, api_v3_account, strQuery, strSign)
 	log.Infof("GET %s", strUrl)
 	r, err := m.client.Get(strUrl, nil)
 	if err != nil {
-		log.Errorf("GET [%s] error [%s]", api_v3_account, err.Error())
+		log.Errorf("GET [%s] error [%s]", strUrl, err.Error())
 		return nil, types.BizCode_ServerError
 	}
-	log.Debugf("body [%s]", r.Body)
-	var sa spotAccount
+	log.Infof("body [%s]", r.Body)
+	var sa spotAccountResp
 	if err = json.Unmarshal(r.Body, &sa); err != nil {
 		log.Errorf("unmarshal account error [%s]", err)
 		return nil, types.BizCode_UnmashalError
@@ -88,9 +91,24 @@ func (m *Binance) SpotBalances() (balances *types.SpotBalances, code types.BizCo
 }
 
 //query spot coin price
-func (m *Binance) SpotPrice(cs *types.CoinSymbol) (price *types.CoinPrice, code types.BizCode) {
-	log.Debugf("query spot price")
-
+func (m *Binance) SpotPrice(symbol string) (price *types.CoinPrice, code types.BizCode) {
+	log.Debugf("query spot price [%s]", symbol)
+	m.client.Header().Set(X_MBX_APIKEY, m.cfg.AppKey)
+	strUrl := m.makeValuesUrl(binance_api_host, api_v3_ticker_price, url.Values{
+		paramSymbol: []string{symbol},
+	})
+	log.Infof("GET %s", strUrl)
+	r, err := m.client.Get(strUrl, nil)
+	if err != nil {
+		log.Errorf("GET [%s] error [%s]", strUrl, err.Error())
+		return nil, types.BizCode_ServerError
+	}
+	log.Infof("body [%s]", r.Body)
+	price = &types.CoinPrice{}
+	if err = json.Unmarshal(r.Body, price); err != nil {
+		log.Errorf("unmarshal account error [%s]", err)
+		return nil, types.BizCode_UnmashalError
+	}
 	return
 }
 
@@ -100,6 +118,22 @@ func (m *Binance) SpotTrade(trade types.SpotTradeRequest) (response *types.SpotT
 	return
 }
 
-func (m *Binance) makeUrl(strHost, strApi, strQuery, strSign string) string {
+func (m *Binance) makeHostUrl(strHost, strApi string) string {
+	return fmt.Sprintf("%s%s", strHost, strApi)
+}
+
+func (m *Binance) makeValuesUrl(strHost, strApi string, values url.Values) string {
+	strQuery := values.Encode()
+	return m.makeQueryUrl(strHost, strApi, strQuery)
+}
+
+func (m *Binance) makeQueryUrl(strHost, strApi, strQuery string) string {
+	if strQuery != "" {
+		return fmt.Sprintf("%s%s?%s", strHost, strApi, strQuery)
+	}
+	return fmt.Sprintf("%s%s", strHost, strApi)
+}
+
+func (m *Binance) makeSignUrl(strHost, strApi, strQuery, strSign string) string {
 	return fmt.Sprintf("%s%s?%s&%s=%s", strHost, strApi, strQuery, paramSignature, strSign)
 }

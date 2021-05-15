@@ -25,16 +25,9 @@ func (t TradeState) String() string {
 	return fmt.Sprintf("TradeState_Unknown<%d>", t)
 }
 
-type CoinSymbol struct {
-	Symbol string `json:"symbol" db:"symbol"`
-	Base   string `json:"base" db:"base"`
-	Quote  string `json:"quote" db:"quote"`
-}
-
 type CoinPrice struct {
-	CoinSymbol *CoinSymbol   `json:"coin_symbol" db:"coin_symbol"`
-	Price      sqlca.Decimal `json:"price" db:"price"`
-	PriceTime  int64         `json:"price_time" db:"price_time"`
+	Symbol string        `json:"symbol" db:"symbol"`
+	Price  sqlca.Decimal `json:"price" db:"price"`
 }
 
 type SpotBalance struct {
@@ -48,8 +41,8 @@ type SpotBalances struct {
 }
 
 type SpotTradeRequest struct {
-	CoinSymbol *CoinSymbol
-	Quantity   float64
+	Symbol   string  `json:"symbol" db:"symbol"`
+	Quantity float64 `json:"quantity" db:"quantity"`
 }
 
 type SpotTradeResult struct {
@@ -60,10 +53,6 @@ type SpotTradeResponse struct {
 	Result SpotTradeResult
 }
 
-func NewCoinSymbol(strBase, strQuote string) *CoinSymbol {
-	return &CoinSymbol{
-		Symbol: fmt.Sprintf("%s/%s", strBase, strQuote),
-		Base:   strBase,
-		Quote:  strQuote,
-	}
+func NewSymbol(strBase, strQuote string) string {
+	return fmt.Sprintf("%s/%s", strBase, strQuote)
 }

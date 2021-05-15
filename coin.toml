@@ -1,7 +1,12 @@
 [[coins]]
-base_asset="DOGE"
-quote_asset="USDT"
+base="DOGE"
+quote="USDT"
+# 卖出比例
 sell_percent=1.0
-sell_rate=0.2
-buy_rate=0.3
+# 增幅
+up_rate=0.2
+# 买入比例
+buy_percent=0.5
+# 跌幅
+down_rate=0.3
 

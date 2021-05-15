@@ -35,7 +35,7 @@ func (m *HuoBi) SpotBalances() (balances *types.SpotBalances, code types.BizCode
 }
 
 //query spot coin price
-func (m *HuoBi) SpotPrice(cs *types.CoinSymbol) (price *types.CoinPrice, code types.BizCode) {
+func (m *HuoBi) SpotPrice(symbol string) (price *types.CoinPrice, code types.BizCode) {
 	log.Debugf("query spot price")
 
 	return
