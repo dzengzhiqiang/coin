@@ -25,7 +25,7 @@ const (
 )
 const (
 	api_v3_account      = "/api/v3/account"      //现货账户
-	api_v3_order        = "/api/v3/order/test"   //下单
+	api_v3_order        = "/api/v3/order"        //下单
 	api_v3_avg_price    = "/api/v3/avgPrice"     //平均价格
 	api_v3_ticker_price = "/api/v3/ticker/price" //最新价格
 )
@@ -67,7 +67,7 @@ func (m *Binance) Close() {
 }
 
 //query spot account balance
-func (m *Binance) SpotBalances() (balances *types.SpotBalances, code types.BizCode) {
+func (m *Binance) SpotBalances() (acc *types.SpotAccount, code types.BizCode) {
 	log.Debugf("query spot balance")
 	m.client.Header().Set(X_MBX_APIKEY, m.cfg.AppKey)
 
@@ -86,6 +86,19 @@ func (m *Binance) SpotBalances() (balances *types.SpotBalances, code types.BizCo
 	if err = json.Unmarshal(r.Body, &sa); err != nil {
 		log.Errorf("unmarshal account error [%s]", err)
 		return nil, types.BizCode_UnmashalError
+	}
+	acc = &types.SpotAccount{
+		MakerCommission:  sa.MakerCommission,
+		TakerCommission:  sa.TakerCommission,
+		BuyerCommission:  sa.BuyerCommission,
+		SellerCommission: sa.SellerCommission,
+		CanTrade:         sa.CanTrade,
+		CanWithdraw:      sa.CanWithdraw,
+		CanDeposit:       sa.CanDeposit,
+		UpdateTime:       sa.UpdateTime,
+		AccountType:      sa.AccountType,
+		Balances:         sa.Balances,
+		Permissions:      sa.Permissions,
 	}
 	return
 }
@@ -112,10 +125,24 @@ func (m *Binance) SpotPrice(symbol string) (price *types.CoinPrice, code types.B
 	return
 }
 
-//trade spot coin
-func (m *Binance) SpotTrade(trade types.SpotTradeRequest) (response *types.SpotTradeResponse, code types.BizCode) {
-	log.Debugf("spot trade")
-	return
+//buy spot coin
+func (m *Binance) SpotBuy(req *types.SpotTradeReq) (*types.SpotTradeResp, types.BizCode) {
+	resp, code := m.spotTrade(req, true)
+	if code != types.BizCode_OK {
+		log.Errorf("request [%+v] failed code [%v]", req, code)
+		return nil, types.BizCode_ServerError
+	}
+	return resp, types.BizCode_OK
+}
+
+//sell spot coin
+func (m *Binance) SpotSell(req *types.SpotTradeReq) (*types.SpotTradeResp, types.BizCode) {
+	resp, code := m.spotTrade(req, false)
+	if code != types.BizCode_OK {
+		log.Errorf("request [%+v] failed code [%v]", req, code)
+		return nil, types.BizCode_ServerError
+	}
+	return resp, types.BizCode_OK
 }
 
 func (m *Binance) makeHostUrl(strHost, strApi string) string {
@@ -136,4 +163,41 @@ func (m *Binance) makeQueryUrl(strHost, strApi, strQuery string) string {
 
 func (m *Binance) makeSignUrl(strHost, strApi, strQuery, strSign string) string {
 	return fmt.Sprintf("%s%s?%s&%s=%s", strHost, strApi, strQuery, paramSignature, strSign)
+}
+
+func (m *Binance) spotTrade(req *types.SpotTradeReq, buy bool) (resp *types.SpotTradeResp, code types.BizCode) {
+	strSide := "SELL"
+	if buy {
+		strSide = "BUY"
+	}
+	m.client.Header().Set(X_MBX_APIKEY, m.cfg.AppKey)
+
+	strQuery, strSign := m.sign.Sign(url.Values{
+		paramSymbol:   []string{req.Symbol},
+		paramSide:     []string{strSide},
+		paramType:     []string{"MARKET"},
+		paramQuantity: []string{req.Quantity.String()},
+		//paramQuoteOrderQty: []string{""},
+		//paramPrice: []string{""},
+		//paramNewClientOrderId: []string{""},
+		//paramStopPrice: []string{""},
+		//paramIcebergQty: []string{""},
+		//paramTimeInForce: []string{""},
+		paramNewOrderRespType: []string{"RESULT"},
+		paramTimestamp:        []string{utils.UnixMilliSecond().String()},
+	})
+	strUrl := m.makeSignUrl(binance_api_host, api_v3_order, strQuery, strSign)
+	log.Infof("GET %s", strUrl)
+	r, err := m.client.Get(strUrl, nil)
+	if err != nil {
+		log.Errorf("GET [%s] error [%s]", strUrl, err.Error())
+		return nil, types.BizCode_ServerError
+	}
+	log.Infof("body [%s]", r.Body)
+	var sor spotOrderResp
+	if err = json.Unmarshal(r.Body, &sor); err != nil {
+		log.Errorf("unmarshal account error [%s]", err)
+		return nil, types.BizCode_UnmashalError
+	}
+	return
 }

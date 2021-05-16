@@ -6,10 +6,20 @@ import (
 )
 
 const (
-	paramRecvWindow = "recvWindow"
-	paramTimestamp  = "timestamp"
-	paramSignature  = "signature"
-	paramSymbol     = "symbol"
+	paramRecvWindow       = "recvWindow"
+	paramTimestamp        = "timestamp"
+	paramSignature        = "signature"
+	paramSymbol           = "symbol"
+	paramSide             = "side"
+	paramType             = "type"
+	paramTimeInForce      = "timeInForce"
+	paramQuantity         = "quantity"
+	paramQuoteOrderQty    = "quoteOrderQty"
+	paramPrice            = "price"
+	paramNewClientOrderId = "newClientOrderId"
+	paramStopPrice        = "stopPrice"
+	paramIcebergQty       = "icebergQty"
+	paramNewOrderRespType = "newOrderRespType"
 )
 
 type spotAccountResp struct {
@@ -28,19 +38,19 @@ type spotAccountResp struct {
 
 //https://2pd.github.io/zh/spot/restful_endpoints/spot_endpoints.html#%E4%B8%8B%E5%8D%95-trade
 type spotOrderReq struct {
-	Symbol           string        `jsno:"symbol"`           //STRING	YES
-	Side             string        `jsno:"side"`             //ENUM		YES
-	Type             string        `jsno:"type"`             //ENUM		YES
-	TimeInForce      string        `jsno:"timeInForce"`      //ENUM		NO
-	Quantity         sqlca.Decimal `jsno:"quantity"`         //DECIMAL	NO
-	QuoteOrderQty    sqlca.Decimal `jsno:"quoteOrderQty"`    //DECIMAL	NO
-	Price            sqlca.Decimal `jsno:"price"`            //DECIMAL	NO
-	NewClientOrderId string        `jsno:"newClientOrderId"` //STRING	NO	客户自定义的唯一订单ID。 如果未发送，则自动生成
-	StopPrice        sqlca.Decimal `jsno:"stopPrice"`        //DECIMAL	NO	仅 STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, 和TAKE_PROFIT_LIMIT 需要此参数。
-	IcebergQty       sqlca.Decimal `jsno:"icebergQty"`       //DECIMAL	NO	仅使用 LIMIT, STOP_LOSS_LIMIT, 和 TAKE_PROFIT_LIMIT 创建新的 iceberg 订单时需要此参数
-	NewOrderRespType string        `jsno:"newOrderRespType"` //ENUM	NO	设置响应JSON。 ACK，RESULT或FULL； "MARKET"和" LIMIT"订单类型默认为"FULL"，所有其他订单默认为"ACK"。
-	RecvWindow       string        `jsno:"recvWindow"`       //LONG	NO	赋值不能大于 60000
-	Timestamp        int           `jsno:"timestamp"`        //LONG	YES
+	Symbol           string        `json:"symbol"`           //STRING	YES
+	Side             string        `json:"side"`             //ENUM		YES
+	Type             string        `json:"type"`             //ENUM		YES
+	TimeInForce      string        `json:"timeInForce"`      //ENUM		NO
+	Quantity         sqlca.Decimal `json:"quantity"`         //DECIMAL	NO
+	QuoteOrderQty    sqlca.Decimal `json:"quoteOrderQty"`    //DECIMAL	NO
+	Price            sqlca.Decimal `json:"price"`            //DECIMAL	NO
+	NewClientOrderId string        `json:"newClientOrderId"` //STRING	NO	客户自定义的唯一订单ID。 如果未发送，则自动生成
+	StopPrice        sqlca.Decimal `json:"stopPrice"`        //DECIMAL	NO	仅 STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, 和TAKE_PROFIT_LIMIT 需要此参数。
+	IcebergQty       sqlca.Decimal `json:"icebergQty"`       //DECIMAL	NO	仅使用 LIMIT, STOP_LOSS_LIMIT, 和 TAKE_PROFIT_LIMIT 创建新的 iceberg 订单时需要此参数
+	NewOrderRespType string        `json:"newOrderRespType"` //ENUM	NO	设置响应JSON。 ACK，RESULT或FULL； "MARKET"和" LIMIT"订单类型默认为"FULL"，所有其他订单默认为"ACK"。
+	RecvWindow       string        `json:"recvWindow"`       //LONG	NO	赋值不能大于 60000
+	Timestamp        int           `json:"timestamp"`        //LONG	YES
 }
 
 type spotOrderResp struct {

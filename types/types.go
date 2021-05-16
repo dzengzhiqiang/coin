@@ -36,19 +36,29 @@ type SpotBalance struct {
 	Locked sqlca.Decimal `json:"locked" db:"locked"`
 }
 
-type SpotBalances struct {
-	Balances []SpotBalance `json:"balances" db:"balances"`
+type SpotAccount struct {
+	MakerCommission  int32         `json:"maker_commission"`
+	TakerCommission  int32         `json:"taker_commission"`
+	BuyerCommission  int32         `json:"buyer_commission"`
+	SellerCommission int32         `json:"seller_commission"`
+	CanTrade         bool          `json:"can_trade"`
+	CanWithdraw      bool          `json:"can_withdraw"`
+	CanDeposit       bool          `json:"can_deposit"`
+	UpdateTime       int64         `json:"update_time"`
+	AccountType      string        `json:"account_type"`
+	Balances         []SpotBalance `json:"balances"`
+	Permissions      []string      `json:"permissions"`
 }
 
-type SpotTradeRequest struct {
-	Symbol   string  `json:"symbol" db:"symbol"`
-	Quantity float64 `json:"quantity" db:"quantity"`
+type SpotTradeReq struct {
+	Symbol   string        `json:"symbol"`
+	Quantity sqlca.Decimal `json:"quantity"`
 }
 
 type SpotTradeResult struct {
 }
 
-type SpotTradeResponse struct {
+type SpotTradeResp struct {
 	State  TradeState
 	Result SpotTradeResult
 }

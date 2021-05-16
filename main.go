@@ -5,8 +5,10 @@ import (
 	"coin/binance"
 	"coin/config"
 	"coin/huobi"
+	"coin/types"
 	"fmt"
 	"github.com/civet148/log"
+	"github.com/civet148/sqlca"
 	"github.com/urfave/cli/v2"
 	"os"
 	"os/signal"
@@ -27,7 +29,8 @@ const (
 const (
 	SUB_CMD_NAME_RUN     = "run"
 	SUB_CMD_NAME_ACCOUNT = "account"
-	SUB_CMD_NAME_TRADE   = "trade"
+	SUB_CMD_NAME_BUY     = "buy"
+	SUB_CMD_NAME_SELL    = "sell"
 	SUB_CMD_NAME_PRICE   = "price"
 )
 
@@ -60,6 +63,7 @@ func gracefulExit() {
 						coin.Close()
 					}
 					time.Sleep(500 * time.Millisecond)
+					log.Infof("program exit...")
 					os.Exit(0)
 				}
 			}
@@ -72,8 +76,6 @@ func init() {
 }
 
 func main() {
-	gracefulExit()
-
 	local := []*cli.Command{
 		binanceCmd,
 		huobiCmd,
@@ -90,6 +92,7 @@ func main() {
 		os.Exit(1)
 		return
 	}
+	time.Sleep(5 * time.Second)
 }
 
 var binanceCmd = &cli.Command{
@@ -137,7 +140,8 @@ var binanceCmd = &cli.Command{
 		runSubCmd,
 		accountSubCmd,
 		priceSubCmd,
-		tradeSubCmd,
+		buySubCmd,
+		sellSubCmd,
 	},
 }
 
@@ -186,7 +190,8 @@ var huobiCmd = &cli.Command{
 		runSubCmd,
 		accountSubCmd,
 		priceSubCmd,
-		tradeSubCmd,
+		buySubCmd,
+		sellSubCmd,
 	},
 }
 
@@ -226,12 +231,44 @@ var priceSubCmd = &cli.Command{
 	},
 }
 
-var tradeSubCmd = &cli.Command{
-	Name:  SUB_CMD_NAME_TRADE,
-	Usage: "coin trade",
+var sellSubCmd = &cli.Command{
+	Name:  SUB_CMD_NAME_SELL,
+	Usage: "coin trade [SELL]",
+	Flags: []cli.Flag{},
+	Action: func(cctx *cli.Context) error {
+		var args = cctx.Args()
+		if args.Len() != 2 {
+			return fmt.Errorf("args less than 2 (symbol and quantity)")
+		}
+		r, c := coin.SpotSell(&types.SpotTradeReq{
+			Symbol:   args.Get(0),
+			Quantity: sqlca.NewDecimal(args.Get(1)),
+		})
+		if c != types.BizCode_OK {
+			return fmt.Errorf("[SELL] trade failed with code [%v]", c)
+		}
+		log.Json(r)
+		return nil
+	},
+}
+var buySubCmd = &cli.Command{
+	Name:  SUB_CMD_NAME_BUY,
+	Usage: "coin trade [BUY]",
 	Flags: []cli.Flag{},
 	Action: func(cctx *cli.Context) error {
 
+		var args = cctx.Args()
+		if args.Len() != 2 {
+			return fmt.Errorf("args less than 2 (symbol and quantity)")
+		}
+		r, c := coin.SpotBuy(&types.SpotTradeReq{
+			Symbol:   args.Get(0),
+			Quantity: sqlca.NewDecimal(args.Get(1)),
+		})
+		if c != types.BizCode_OK {
+			return fmt.Errorf("[BUY] trade failed with code [%v]", c)
+		}
+		log.Json(r)
 		return nil
 	},
 }
