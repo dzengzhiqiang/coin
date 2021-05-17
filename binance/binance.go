@@ -81,7 +81,7 @@ func (m *Binance) SpotBalances() (acc *types.SpotAccount, code types.BizCode) {
 		log.Errorf("GET [%s] error [%s]", strUrl, err.Error())
 		return nil, types.BizCode_ServerError
 	}
-	log.Infof("body [%s]", r.Body)
+	log.Infof("http code [%v] body [%s]", r.StatusCode, r.Body)
 	var sa spotAccountResp
 	if err = json.Unmarshal(r.Body, &sa); err != nil {
 		log.Errorf("unmarshal account error [%s]", err)
@@ -116,7 +116,7 @@ func (m *Binance) SpotPrice(symbol string) (price *types.CoinPrice, code types.B
 		log.Errorf("GET [%s] error [%s]", strUrl, err.Error())
 		return nil, types.BizCode_ServerError
 	}
-	log.Infof("body [%s]", r.Body)
+	log.Infof("http code [%v] body [%s]", r.StatusCode, r.Body)
 	price = &types.CoinPrice{}
 	if err = json.Unmarshal(r.Body, price); err != nil {
 		log.Errorf("unmarshal account error [%s]", err)
@@ -165,6 +165,10 @@ func (m *Binance) makeSignUrl(strHost, strApi, strQuery, strSign string) string 
 	return fmt.Sprintf("%s%s?%s&%s=%s", strHost, strApi, strQuery, paramSignature, strSign)
 }
 
+func (m *Binance) makeQuerySign(strQuery, strSign string) string {
+	return fmt.Sprintf("%s&%s=%s", strQuery, paramSignature, strSign)
+}
+
 func (m *Binance) spotTrade(req *types.SpotTradeReq, buy bool) (resp *types.SpotTradeResp, code types.BizCode) {
 	strSide := "SELL"
 	if buy {
@@ -177,23 +181,25 @@ func (m *Binance) spotTrade(req *types.SpotTradeReq, buy bool) (resp *types.Spot
 		paramSide:     []string{strSide},
 		paramType:     []string{"MARKET"},
 		paramQuantity: []string{req.Quantity.String()},
-		//paramQuoteOrderQty: []string{""},
+		//paramQuoteOrderQty: []string{req.Quantity.String()},
 		//paramPrice: []string{""},
 		//paramNewClientOrderId: []string{""},
 		//paramStopPrice: []string{""},
 		//paramIcebergQty: []string{""},
-		//paramTimeInForce: []string{""},
-		paramNewOrderRespType: []string{"RESULT"},
-		paramTimestamp:        []string{utils.UnixMilliSecond().String()},
+		//paramTimeInForce: []string{"GTC"},
+		//paramNewOrderRespType: []string{"FULL"},
+		//paramRecvWindow: []string{"5000"},
+		paramTimestamp: []string{utils.UnixMilliSecond().String()},
 	})
-	strUrl := m.makeSignUrl(binance_api_host, api_v3_order, strQuery, strSign)
-	log.Infof("GET %s", strUrl)
-	r, err := m.client.Get(strUrl, nil)
+	strUrl := m.makeHostUrl(binance_api_host, api_v3_order)
+	strPost := m.makeQuerySign(strQuery, strSign)
+	log.Infof("POST s", strUrl)
+	r, err := m.client.Post(httpc.CONTENT_TYPE_NAME_X_WWW_FORM_URL_ENCODED, strUrl, strPost)
 	if err != nil {
-		log.Errorf("GET [%s] error [%s]", strUrl, err.Error())
+		log.Errorf("POST [%s] error [%s]", strUrl, err.Error())
 		return nil, types.BizCode_ServerError
 	}
-	log.Infof("body [%s]", r.Body)
+	log.Infof("http code [%v] body [%s]", r.StatusCode, r.Body)
 	var sor spotOrderResp
 	if err = json.Unmarshal(r.Body, &sor); err != nil {
 		log.Errorf("unmarshal account error [%s]", err)

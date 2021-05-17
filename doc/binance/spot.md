@@ -2117,3 +2117,51 @@
     ]
 }
 ```
+
+## 1.2 下单（BUY/SELL)
+
+POST  application/x-www-form-urlencoded /api/v3/order
+
+卖出0.1FIL
+
+quantity=0.1&side=SELL&symbol=FILUSDT&timestamp=1621211414769&type=MARKET&signature=6229e3e0455a4e9006914924f06a8210a088e0612e3c51faac3af279039cf8bb
+
+```json
+{
+    "symbol":"FILUSDT",
+    "orderId":630727910,
+    "orderListId":-1,
+    "clientOrderId":"I354Wxru6MdjQEHbYuIwEt",
+    "transactTime":1621211414977,
+    "price":"0.00000000",
+    "origQty":"0.10000000",
+    "executedQty":"0.10000000",
+    "cummulativeQuoteQty":"10.65700000",
+    "status":"FILLED",
+    "timeInForce":"GTC",
+    "type":"MARKET",
+    "side":"SELL",
+    "fills":[
+        {
+            "price":"106.57000000",
+            "qty":"0.10000000",
+            "commission":"0.01065700",
+            "commissionAsset":"USDT",
+            "tradeId":41666378
+        }
+    ]
+}
+```
+
+ 账户不足
+
+```json
+ http code [400] body [{"code":-2010,"msg":"Account has insufficient balance for requested action."}]
+```
+
+购买数量太少
+
+```json
+http code [400] body [{"code":-1013,"msg":"Filter failure: MIN_NOTIONAL"}]
+```
+
