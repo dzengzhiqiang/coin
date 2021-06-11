@@ -73,6 +73,8 @@ func gracefulExit() {
 
 func init() {
 	log.SetLevel(0)
+	log.CloseConsole(true)
+	log.Open("coin.log")
 }
 
 func main() {

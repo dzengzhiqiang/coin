@@ -8,5 +8,7 @@ require (
 	github.com/civet148/httpc v0.1.3
 	github.com/civet148/log v1.0.0
 	github.com/civet148/sqlca v1.5.0
+	github.com/jroimartin/gocui v0.4.0
+	github.com/nsf/termbox-go v1.1.1 // indirect
 	github.com/urfave/cli/v2 v2.3.0
 )

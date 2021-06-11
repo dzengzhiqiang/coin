@@ -193,7 +193,7 @@ func (m *Binance) spotTrade(req *types.SpotTradeReq, buy bool) (resp *types.Spot
 	})
 	strUrl := m.makeHostUrl(binance_api_host, api_v3_order)
 	strPost := m.makeQuerySign(strQuery, strSign)
-	log.Infof("POST s", strUrl)
+	log.Infof("POST %s [%s]", strUrl, strPost)
 	r, err := m.client.Post(httpc.CONTENT_TYPE_NAME_X_WWW_FORM_URL_ENCODED, strUrl, strPost)
 	if err != nil {
 		log.Errorf("POST [%s] error [%s]", strUrl, err.Error())
