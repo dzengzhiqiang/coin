@@ -5,6 +5,7 @@ import (
 	"coin/binance"
 	"coin/config"
 	"coin/huobi"
+	"coin/proto"
 	"coin/types"
 	"fmt"
 	"github.com/civet148/log"
@@ -242,7 +243,7 @@ var sellSubCmd = &cli.Command{
 		if args.Len() != 2 {
 			return fmt.Errorf("args less than 2 (symbol and quantity)")
 		}
-		r, c := coin.SpotSell(&types.SpotTradeReq{
+		r, c := coin.SpotSell(&proto.SpotTradeReq{
 			Symbol:   args.Get(0),
 			Quantity: sqlca.NewDecimal(args.Get(1)),
 		})
@@ -263,7 +264,7 @@ var buySubCmd = &cli.Command{
 		if args.Len() != 2 {
 			return fmt.Errorf("args less than 2 (symbol and quantity)")
 		}
-		r, c := coin.SpotBuy(&types.SpotTradeReq{
+		r, c := coin.SpotBuy(&proto.SpotTradeReq{
 			Symbol:   args.Get(0),
 			Quantity: sqlca.NewDecimal(args.Get(1)),
 		})

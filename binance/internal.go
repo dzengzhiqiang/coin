@@ -1,7 +1,7 @@
 package binance
 
 import (
-	"coin/types"
+	"coin/proto"
 	"github.com/civet148/sqlca"
 )
 
@@ -32,7 +32,7 @@ type spotAccountResp struct {
 	CanDeposit       bool                `json:"canDeposit"`
 	UpdateTime       int64               `json:"updateTime"`
 	AccountType      string              `json:"accountType"`
-	Balances         []types.SpotBalance `json:"balances"`
+	Balances         []proto.SpotBalance `json:"balances"`
 	Permissions      []string            `json:"permissions"`
 }
 

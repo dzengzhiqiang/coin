@@ -2,7 +2,7 @@ package types
 
 import (
 	"fmt"
-	"github.com/civet148/sqlca"
+	"strings"
 )
 
 type TradeState int
@@ -25,44 +25,45 @@ func (t TradeState) String() string {
 	return fmt.Sprintf("TradeState_Unknown<%d>", t)
 }
 
-type CoinPrice struct {
-	Symbol string        `json:"symbol" db:"symbol"`
-	Price  sqlca.Decimal `json:"price" db:"price"`
+type Symbol string
+
+//one input:  DOGE/USDT
+//tow inputs: DOGE USDT
+func NewSymbol(args ...string) Symbol {
+	var s Symbol
+	if len(args) == 1 {
+		s = Symbol(args[0])
+	} else if len(args) >= 2 {
+		strSymbol := fmt.Sprintf("%s/%s", args[0], args[1])
+		s = Symbol(strSymbol)
+	}
+	return s
 }
 
-type SpotBalance struct {
-	Asset  string        `json:"asset" db:"asset"`
-	Free   sqlca.Decimal `json:"free" db:"free"`
-	Locked sqlca.Decimal `json:"locked" db:"locked"`
+func (s Symbol) String() string {
+	return string(s)
 }
 
-type SpotAccount struct {
-	MakerCommission  int32         `json:"maker_commission"`
-	TakerCommission  int32         `json:"taker_commission"`
-	BuyerCommission  int32         `json:"buyer_commission"`
-	SellerCommission int32         `json:"seller_commission"`
-	CanTrade         bool          `json:"can_trade"`
-	CanWithdraw      bool          `json:"can_withdraw"`
-	CanDeposit       bool          `json:"can_deposit"`
-	UpdateTime       int64         `json:"update_time"`
-	AccountType      string        `json:"account_type"`
-	Balances         []SpotBalance `json:"balances"`
-	Permissions      []string      `json:"permissions"`
+func (s Symbol) GoString() string {
+	return string(s)
 }
 
-type SpotTradeReq struct {
-	Symbol   string        `json:"symbol"`
-	Quantity sqlca.Decimal `json:"quantity"`
+func (s Symbol) Base() (strBase string) {
+	bq := strings.Split(string(s), "/")
+	if len(bq) == 2 {
+		strBase = bq[0]
+	}
+	return
 }
 
-type SpotTradeResult struct {
+func (s Symbol) Quote() (strQuote string) {
+	bq := strings.Split(string(s), "/")
+	if len(bq) == 2 {
+		strQuote = bq[1]
+	}
+	return
 }
 
-type SpotTradeResp struct {
-	State  TradeState
-	Result SpotTradeResult
-}
-
-func NewSymbol(strBase, strQuote string) string {
-	return fmt.Sprintf("%s/%s", strBase, strQuote)
+func (s Symbol) FromString(strSymbol string) Symbol {
+	return Symbol(strSymbol)
 }

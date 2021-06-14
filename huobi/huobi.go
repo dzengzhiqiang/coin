@@ -3,6 +3,7 @@ package huobi
 import (
 	"coin/api"
 	"coin/config"
+	"coin/proto"
 	"coin/types"
 	"github.com/civet148/log"
 )
@@ -29,24 +30,24 @@ func (m *HuoBi) Close() {
 }
 
 //query spot account balance
-func (m *HuoBi) SpotBalances() (acc *types.SpotAccount, code types.BizCode) {
+func (m *HuoBi) SpotBalances() (acc *proto.SpotAccount, code types.BizCode) {
 	log.Debugf("query spot balance")
 	return
 }
 
 //query spot coin price
-func (m *HuoBi) SpotPrice(symbol string) (price *types.CoinPrice, code types.BizCode) {
+func (m *HuoBi) SpotPrice(symbol string) (price *proto.CoinPrice, code types.BizCode) {
 	log.Debugf("query spot price")
 
 	return
 }
 
 //buy spot coin
-func (m *HuoBi) SpotBuy(req *types.SpotTradeReq) (*types.SpotTradeResp, types.BizCode) {
+func (m *HuoBi) SpotBuy(req *proto.SpotTradeReq) (*proto.SpotTradeResp, types.BizCode) {
 	return nil, 0
 }
 
 //sell spot coin
-func (m *HuoBi) SpotSell(req *types.SpotTradeReq) (*types.SpotTradeResp, types.BizCode) {
+func (m *HuoBi) SpotSell(req *proto.SpotTradeReq) (*proto.SpotTradeResp, types.BizCode) {
 	return nil, 0
 }

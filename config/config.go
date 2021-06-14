@@ -19,8 +19,9 @@ type Config struct {
 type Coin struct {
 	BaseAsset   string  `toml:"base_asset"`
 	QuoteAsset  string  `toml:"quote_asset"`
+	UpRate      float64 `toml:"up_rate"`
 	SellPercent float64 `toml:"sell_percent"`
-	SellRate    float64 `toml:"sell_rate"`
+	DownRate    float64 `toml:"down_rate"`
 	BuyRate     float64 `toml:"buy_rate"`
 }
 

@@ -3,6 +3,8 @@ package binance
 import (
 	"coin/api"
 	"coin/config"
+	"coin/dal"
+	"coin/proto"
 	"coin/types"
 	"coin/utils"
 	"encoding/json"
@@ -45,11 +47,13 @@ type Binance struct {
 	cfg    *config.Config
 	sign   *Signature
 	client *httpc.Client
+	dal    *dal.Dal
 }
 
 func NewCoinManager(cfg *config.Config) api.CoinApi {
 	return &Binance{
 		cfg:    cfg,
+		dal:    dal.NewDal(cfg),
 		sign:   NewSignature(cfg),
 		client: httpc.NewHttpClient(60),
 	}
@@ -67,7 +71,7 @@ func (m *Binance) Close() {
 }
 
 //query spot account balance
-func (m *Binance) SpotBalances() (acc *types.SpotAccount, code types.BizCode) {
+func (m *Binance) SpotBalances() (acc *proto.SpotAccount, code types.BizCode) {
 	log.Debugf("query spot balance")
 	m.client.Header().Set(X_MBX_APIKEY, m.cfg.AppKey)
 
@@ -87,7 +91,7 @@ func (m *Binance) SpotBalances() (acc *types.SpotAccount, code types.BizCode) {
 		log.Errorf("unmarshal account error [%s]", err)
 		return nil, types.BizCode_UnmashalError
 	}
-	acc = &types.SpotAccount{
+	acc = &proto.SpotAccount{
 		MakerCommission:  sa.MakerCommission,
 		TakerCommission:  sa.TakerCommission,
 		BuyerCommission:  sa.BuyerCommission,
@@ -104,7 +108,7 @@ func (m *Binance) SpotBalances() (acc *types.SpotAccount, code types.BizCode) {
 }
 
 //query spot coin price
-func (m *Binance) SpotPrice(symbol string) (price *types.CoinPrice, code types.BizCode) {
+func (m *Binance) SpotPrice(symbol string) (price *proto.CoinPrice, code types.BizCode) {
 	log.Debugf("query spot price [%s]", symbol)
 	m.client.Header().Set(X_MBX_APIKEY, m.cfg.AppKey)
 	strUrl := m.makeValuesUrl(binance_api_host, api_v3_ticker_price, url.Values{
@@ -117,7 +121,7 @@ func (m *Binance) SpotPrice(symbol string) (price *types.CoinPrice, code types.B
 		return nil, types.BizCode_ServerError
 	}
 	log.Infof("http code [%v] body [%s]", r.StatusCode, r.Body)
-	price = &types.CoinPrice{}
+	price = &proto.CoinPrice{}
 	if err = json.Unmarshal(r.Body, price); err != nil {
 		log.Errorf("unmarshal account error [%s]", err)
 		return nil, types.BizCode_UnmashalError
@@ -126,7 +130,7 @@ func (m *Binance) SpotPrice(symbol string) (price *types.CoinPrice, code types.B
 }
 
 //buy spot coin
-func (m *Binance) SpotBuy(req *types.SpotTradeReq) (*types.SpotTradeResp, types.BizCode) {
+func (m *Binance) SpotBuy(req *proto.SpotTradeReq) (*proto.SpotTradeResp, types.BizCode) {
 	resp, code := m.spotTrade(req, true)
 	if code != types.BizCode_OK {
 		log.Errorf("request [%+v] failed code [%v]", req, code)
@@ -136,7 +140,7 @@ func (m *Binance) SpotBuy(req *types.SpotTradeReq) (*types.SpotTradeResp, types.
 }
 
 //sell spot coin
-func (m *Binance) SpotSell(req *types.SpotTradeReq) (*types.SpotTradeResp, types.BizCode) {
+func (m *Binance) SpotSell(req *proto.SpotTradeReq) (*proto.SpotTradeResp, types.BizCode) {
 	resp, code := m.spotTrade(req, false)
 	if code != types.BizCode_OK {
 		log.Errorf("request [%+v] failed code [%v]", req, code)
@@ -169,7 +173,7 @@ func (m *Binance) makeQuerySign(strQuery, strSign string) string {
 	return fmt.Sprintf("%s&%s=%s", strQuery, paramSignature, strSign)
 }
 
-func (m *Binance) spotTrade(req *types.SpotTradeReq, buy bool) (resp *types.SpotTradeResp, code types.BizCode) {
+func (m *Binance) spotTrade(req *proto.SpotTradeReq, buy bool) (resp *proto.SpotTradeResp, code types.BizCode) {
 	strSide := "SELL"
 	if buy {
 		strSide = "BUY"
@@ -205,5 +209,19 @@ func (m *Binance) spotTrade(req *types.SpotTradeReq, buy bool) (resp *types.Spot
 		log.Errorf("unmarshal account error [%s]", err)
 		return nil, types.BizCode_UnmashalError
 	}
-	return
+	return &proto.SpotTradeResp{
+		State: types.TradeState_OK,
+		Result: proto.SpotTradeResult{
+			Symbol:              sor.Symbol,
+			OrderId:             utils.Int64ToString(sor.OrderId),
+			ClientOrderId:       sor.ClientOrderId,
+			TransactTime:        sor.TransactTime,
+			Price:               sor.Price,
+			OrigQty:             sor.OrigQty,
+			ExecutedQty:         sor.ExecutedQty,
+			CummulativeQuoteQty: sor.CummulativeQuoteQty,
+			Type:                sor.Type,
+			Side:                sor.Side,
+		},
+	}, types.BizCode_OK
 }

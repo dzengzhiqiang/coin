@@ -1,6 +1,7 @@
 package api
 
 import (
+	"coin/proto"
 	"coin/types"
 )
 
@@ -12,14 +13,14 @@ type CoinApi interface {
 	Close()
 
 	//query spot account balance
-	SpotBalances() (*types.SpotAccount, types.BizCode)
+	SpotBalances() (*proto.SpotAccount, types.BizCode)
 
 	//query spot coin price
-	SpotPrice(symbol string) (*types.CoinPrice, types.BizCode)
+	SpotPrice(symbol string) (*proto.CoinPrice, types.BizCode)
 
 	//buy spot coin
-	SpotBuy(req *types.SpotTradeReq) (*types.SpotTradeResp, types.BizCode)
+	SpotBuy(req *proto.SpotTradeReq) (*proto.SpotTradeResp, types.BizCode)
 
 	//sell spot coin
-	SpotSell(req *types.SpotTradeReq) (*types.SpotTradeResp, types.BizCode)
+	SpotSell(req *proto.SpotTradeReq) (*proto.SpotTradeResp, types.BizCode)
 }
